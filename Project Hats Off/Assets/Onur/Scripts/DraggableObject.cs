@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DraggableObject : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class DraggableObject : MonoBehaviour
     private Camera cam;
     private Vector2 minBounds, maxBounds;
     public BoxCollider2D takeToHandZone;
-    private ClickableObject clickableObjectScript;
+
+
+
 
     // Her bir kenar için ayrý offset deðerleri
     public float rightOffset = 1.55f;
@@ -18,8 +22,6 @@ public class DraggableObject : MonoBehaviour
 
     void Start()
     {
-        clickableObjectScript = GetComponent<ClickableObject>();
-        
         cam = Camera.main;
 
         // Kameranýn köþe noktalarýný hesaplayalým
@@ -36,6 +38,7 @@ public class DraggableObject : MonoBehaviour
         difference = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
     }
 
+
     private void OnMouseDrag()
     {
         Vector2 newPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - difference;
@@ -48,14 +51,8 @@ public class DraggableObject : MonoBehaviour
         transform.position = newPos;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("TakeToHandZone")) 
-        {
-            //Debug.Log("eline aldý!");
-            //clickableObjectScript.OpenFolder1();
-            clickableObjectScript.canOpenTheFolder = true;
-        }
-    }
+    
+
+
 
 }
