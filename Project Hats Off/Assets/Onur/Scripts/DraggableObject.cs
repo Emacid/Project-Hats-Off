@@ -1,20 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class DraggableObject : MonoBehaviour
 {
-    Vector2 difference = Vector2.zero;
+    private Vector2 difference = Vector2.zero;
     private Camera cam;
     private Vector2 minBounds, maxBounds;
+    public bool isDraggable = true; // Sürüklemeyi kontrol eden boolean
     public BoxCollider2D takeToHandZone;
+    private Vector2 originalPos;
+    public GameObject draggableObject;
+    public GameObject folderDraggableObject;
+    public SwapPos swapPosScript;
 
-
-
-
-    // Her bir kenar için ayrý offset deðerleri
     public float rightOffset = 1.55f;
     public float leftOffset = 1.55f;
     public float topOffset = 1.55f;
@@ -23,36 +20,46 @@ public class DraggableObject : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-
-        // Kameranýn köþe noktalarýný hesaplayalým
         Vector3 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z));
         Vector3 topRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
-
-        // Minimum ve maksimum x, y sýnýrlarýný ayarlayýn (Her kenar için farklý offset deðerleriyle)
         minBounds = new Vector2(bottomLeft.x + leftOffset, bottomLeft.y + bottomOffset);
         maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
+        originalPos = new Vector2(0, 0);
     }
 
     private void OnMouseDown()
     {
-        difference = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
-    }
+        if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
+        difference = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
+        if (swapPosScript.folderUp)
+        {
+            draggableObject.transform.localPosition = originalPos;
+        }
 
+        if (!swapPosScript.folderUp)
+        {
+            folderDraggableObject.transform.localPosition = originalPos;
+        }
+    }
 
     private void OnMouseDrag()
     {
-        Vector2 newPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - difference;
+        if (swapPosScript.folderUp)
+        {
+            draggableObject.transform.localPosition = originalPos;
+        }
 
-        // Pozisyonu ekran sýnýrlarýna göre sýnýrlýyoruz (Her kenar için ayrý offsetlerle)
+        if (!swapPosScript.folderUp)
+        {
+            folderDraggableObject.transform.localPosition = originalPos;
+        }
+
+        if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
+        Vector2 newPos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - difference;
+
         newPos.x = Mathf.Clamp(newPos.x, minBounds.x, maxBounds.x);
         newPos.y = Mathf.Clamp(newPos.y, minBounds.y, maxBounds.y);
 
-        // Objenin pozisyonunu ayarlýyoruz
         transform.position = newPos;
     }
-
-    
-
-
-
 }
