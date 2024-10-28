@@ -104,7 +104,7 @@ public class SwapPos : MonoBehaviour
         folderObject.transform.localPosition = Vector2.MoveTowards(folderObject.transform.localPosition, Vector2.zero, -150.0f * Time.deltaTime);
         yield return new WaitForSeconds(1);
         DraggableObjectScript.isDraggable = true;
-
+        DraggableObjectScript.PageOffset();
     }
 
     private void SwapBack() 
@@ -147,6 +147,7 @@ public class SwapPos : MonoBehaviour
         FolderPageAnimator.SetTrigger("goBackIdle");
         yield return new WaitForSeconds(0.5f);
         DraggableObjectScript.isDraggable = true;
+        DraggableObjectScript.Offset();
         //boxCollider2D.enabled = true;
         //boxCollider2D.isTrigger = true;
     }

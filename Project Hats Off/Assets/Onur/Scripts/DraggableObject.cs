@@ -12,10 +12,16 @@ public class DraggableObject : MonoBehaviour
     public GameObject folderDraggableObject;
     public SwapPos swapPosScript;
 
+    public bool changeOffset = false;
+
     public float rightOffset = 1.55f;
     public float leftOffset = 1.55f;
+    public float rightOffsetWhenPageIsUp = 1.55f;
+    public float leftOffsetWhenPageIsUp = 1.55f;
     public float topOffset = 1.55f;
     public float bottomOffset = 0.5f;
+    public float topOffsetWhenPageIsUp = 1.55f;
+    public float bottomOffsetWhenPageIsUp = 0.5f;
 
     void Start()
     {
@@ -26,7 +32,16 @@ public class DraggableObject : MonoBehaviour
         maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
         originalPos = new Vector2(0, 0);
     }
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab)) 
+        {
+            Vector3 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z));
+            Vector3 topRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
+            minBounds = new Vector2(bottomLeft.x + leftOffset, bottomLeft.y + bottomOffset);
+            maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
+        }
+    }
     private void OnMouseDown()
     {
         if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
@@ -61,5 +76,21 @@ public class DraggableObject : MonoBehaviour
         newPos.y = Mathf.Clamp(newPos.y, minBounds.y, maxBounds.y);
 
         transform.position = newPos;
+    }
+
+    public void PageOffset() 
+    {
+        Vector3 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z));
+        Vector3 topRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
+        minBounds = new Vector2(bottomLeft.x + leftOffsetWhenPageIsUp, bottomLeft.y + bottomOffsetWhenPageIsUp);
+        maxBounds = new Vector2(topRight.x - rightOffsetWhenPageIsUp, topRight.y - topOffsetWhenPageIsUp);
+    }
+
+    public void Offset()
+    {
+        Vector3 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z));
+        Vector3 topRight = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
+        minBounds = new Vector2(bottomLeft.x + leftOffset, bottomLeft.y + bottomOffset);
+        maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
     }
 }

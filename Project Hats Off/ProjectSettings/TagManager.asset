@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TakeToHandZone
   - TakeBackZone
+  - PhotoZone
   layers:
   - Default
   - TransparentFX
