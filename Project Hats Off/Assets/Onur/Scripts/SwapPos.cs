@@ -8,7 +8,7 @@ public class SwapPos : MonoBehaviour
     public bool inTheZone = false;
     public bool inTheSecondZone = false;
     public bool folderUp = true;
-    
+
     public Animator animator;
     public Animator FolderPageAnimator;
 
@@ -36,7 +36,7 @@ public class SwapPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -78,7 +78,7 @@ public class SwapPos : MonoBehaviour
         }
     }
 
-    private void Swap() 
+    private void Swap()
     {
 
         DraggableObjectScript.isDraggable = false;
@@ -95,7 +95,7 @@ public class SwapPos : MonoBehaviour
         folderUp = false;
     }
 
-    private IEnumerator ReturnToNormalPos(float delay) 
+    private IEnumerator ReturnToNormalPos(float delay)
     {
         yield return new WaitForSeconds(delay);
         gameObject.transform.Translate(0, 5.0f, 0);
@@ -107,14 +107,14 @@ public class SwapPos : MonoBehaviour
         DraggableObjectScript.PageOffset();
     }
 
-    private void SwapBack() 
+    private void SwapBack()
     {
 
         DraggableObjectScript.isDraggable = false;
         boxCollider2D.isTrigger = true;
         boxCollider2D.size = new Vector2(values[0], values[1]);
         animator.SetTrigger("goToOriginalPos");
-        tableCollider.enabled = false;
+        //tableCollider.enabled = false;
         FolderPageAnimator.SetTrigger("goToOriginalPos");
         StartCoroutine(ReturnToNormalPos2(1.0f));
     }
@@ -128,11 +128,11 @@ public class SwapPos : MonoBehaviour
 
 
 
-        
+
         draggableObject.transform.localPosition = Vector2.MoveTowards(draggableObject.transform.localPosition, Vector2.zero, 100.0f * Time.deltaTime);
 
 
-        
+
         yield return new WaitForSeconds(0.2f);
         folderUp = true;
         inTheZone = false;

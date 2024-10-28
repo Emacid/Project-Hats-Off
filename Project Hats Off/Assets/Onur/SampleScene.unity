@@ -594,6 +594,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &792333465 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8137779898757962990, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+  m_PrefabInstance: {fileID: 1450749179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &826497486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5322526186258366133, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+  m_PrefabInstance: {fileID: 2801347901652977587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca358b9336579f40b7e7280034b002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &914302646 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8137779898757962990, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+  m_PrefabInstance: {fileID: 2801347901652977587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1004785108
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,13 +690,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.09, y: 4.78}
+  m_Size: {x: 1.5, y: 2.5}
   m_EdgeRadius: 0
 --- !u!1 &1064986879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3181872412753251443, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
   m_PrefabInstance: {fileID: 1450749179}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1064986882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5322526186258366133, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+  m_PrefabInstance: {fileID: 1450749179}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064986879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca358b9336579f40b7e7280034b002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1064986886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,7 +864,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.09, y: 4.78}
+  m_Size: {x: 1.5, y: 2.5}
   m_EdgeRadius: 0
 --- !u!1 &1300130775
 GameObject:
@@ -1057,6 +1089,14 @@ PrefabInstance:
       propertyPath: tableCollider
       value: 
       objectReference: {fileID: 2110861192}
+    - target: {fileID: 5241878010437040819, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+      propertyPath: folderPageAnimator
+      value: 
+      objectReference: {fileID: 792333465}
+    - target: {fileID: 5241878010437040819, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+      propertyPath: draggableObjectScript
+      value: 
+      objectReference: {fileID: 1064986882}
     - target: {fileID: 5322526186258366133, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
       propertyPath: takeToHandZone
       value: 
@@ -1335,6 +1375,14 @@ PrefabInstance:
       propertyPath: tableCollider
       value: 
       objectReference: {fileID: 2110861192}
+    - target: {fileID: 5241878010437040819, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+      propertyPath: folderPageAnimator
+      value: 
+      objectReference: {fileID: 914302646}
+    - target: {fileID: 5241878010437040819, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
+      propertyPath: draggableObjectScript
+      value: 
+      objectReference: {fileID: 826497486}
     - target: {fileID: 5322526186258366133, guid: c4dc965351d3c364d875eeff7105346a, type: 3}
       propertyPath: takeToHandZone
       value: 
