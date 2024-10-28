@@ -65,6 +65,33 @@ public class SwapPos : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("TakeToHandZone"))
+        {
+            inTheZone = true;
+        }
+
+        if (collision.collider.CompareTag("TakeBackZone"))
+        {
+            Debug.Log("TakeBackZone!");
+            inTheSecondZone = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("TakeToHandZone"))
+        {
+            inTheZone = false;
+        }
+        if (collision.collider.CompareTag("TakeBackZone"))
+        {
+            inTheSecondZone = false;
+        }
+    }
+
+
     private void OnMouseUp()
     {
         if (inTheZone && folderUp)
@@ -72,7 +99,7 @@ public class SwapPos : MonoBehaviour
             Swap();
         }
 
-        if (inTheZone && !folderUp && inTheSecondZone)
+        if (!inTheZone && !folderUp && inTheSecondZone)
         {
             SwapBack();
         }
@@ -90,6 +117,7 @@ public class SwapPos : MonoBehaviour
         //animator.SetBool("canOpenTheObject", true);
         animator.SetTrigger("canOpenTheObject");
         FolderPageAnimator.SetTrigger("GoUpNow");
+        gameObject.layer = 8;
         Debug.Log("Folder konumlarý Swaplanýyor!");
         inTheZone = false;
         folderUp = false;
@@ -100,7 +128,7 @@ public class SwapPos : MonoBehaviour
         yield return new WaitForSeconds(delay);
         gameObject.transform.Translate(0, 5.0f, 0);
         boxCollider2D.enabled = true;
-        boxCollider2D.isTrigger = true;
+        //boxCollider2D.isTrigger = true;
         folderObject.transform.localPosition = Vector2.MoveTowards(folderObject.transform.localPosition, Vector2.zero, -150.0f * Time.deltaTime);
         yield return new WaitForSeconds(1);
         DraggableObjectScript.isDraggable = true;
@@ -116,6 +144,15 @@ public class SwapPos : MonoBehaviour
         animator.SetTrigger("goToOriginalPos");
         //tableCollider.enabled = false;
         FolderPageAnimator.SetTrigger("goToOriginalPos");
+        if (gameObject.CompareTag("Object"))
+        {
+            gameObject.layer = 6;
+        }
+        else if (gameObject.CompareTag("Photo"))
+        {
+            gameObject.layer = 7;
+        }
+        gameObject.layer = 6;
         StartCoroutine(ReturnToNormalPos2(1.0f));
     }
 
