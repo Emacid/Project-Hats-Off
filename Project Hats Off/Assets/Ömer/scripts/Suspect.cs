@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Suspect : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private float speed;
     [SerializeField]
     private bool isMiddle;
     [SerializeField]
@@ -16,17 +16,78 @@ public class Suspect : MonoBehaviour
     public Transform middle;
     public Transform right;
     public Transform left;
+    public Evidence currentEvidence;
+    public enum Evidence
+    {
+        obj1,
+        obj2,
+        obj3,
+        obj4
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        CheckPosition();
         CheckMiddle();
+        CheckPosition();
+        ChooseEvidence();
+        CheckQuestion();
+    }
+
+
+    private void OnMouseDown()
+    {
+        TextWriter.instance.StartDialogue();       
+    }
+
+    public void SetEvidence(int objectNumber)
+    {
+        currentEvidence = (Evidence)objectNumber;
+    }
+
+
+    void ChooseEvidence() 
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SetEvidence(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            SetEvidence(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            SetEvidence(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            SetEvidence(3);
+        }
+    }
+
+    void CheckQuestion()
+    {
+        switch (currentEvidence)
+        {
+            case Evidence.obj1:
+                DialogueManager.instance.SetQuestion(0);
+                break;
+            case Evidence.obj2:
+                DialogueManager.instance.SetQuestion(1);
+                break;
+            case Evidence.obj3:
+                DialogueManager.instance.SetQuestion(2);
+                break;
+            case Evidence.obj4:
+                DialogueManager.instance.SetQuestion(3);
+                break;
+        }
     }
 
     void CheckPosition()
@@ -67,16 +128,15 @@ public class Suspect : MonoBehaviour
 
                 anim.SetBool("outRight", true);
             }
-           /* else if ()
-            {
-                anim.SetBool("outLeft", true);
-            }
-           */
+
+            DialogueManager.instance.SetSuspect(0);
+            SuspectManager.instance.isMoving1 = false;
+
             isLeft = false;
             isRight = false;
         }
-    }
 
+    }
 
     public void MovementSuspect()
     {
@@ -100,6 +160,3 @@ public class Suspect : MonoBehaviour
 
 
 }
-
-
-

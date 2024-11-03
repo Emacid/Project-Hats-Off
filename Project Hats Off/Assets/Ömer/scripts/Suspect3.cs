@@ -6,7 +6,6 @@ public class Suspect3 : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private float speed;
     [SerializeField]
     private bool isMiddle;
     [SerializeField]
@@ -16,6 +15,15 @@ public class Suspect3 : MonoBehaviour
     public Transform middle;
     public Transform right;
     public Transform left;
+    public Evidence currentEvidence;
+    public enum Evidence
+    {
+        obj1,
+        obj2,
+        obj3,
+        obj4
+    }
+
 
     private void Start()
     {
@@ -23,13 +31,66 @@ public class Suspect3 : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+
     private void Update()
     {
-        CheckPosition();
         CheckMiddle();
+        CheckPosition();
+        ChooseEvidence();
+        CheckQuestion();
     }
 
-    void CheckPosition()
+    private void OnMouseDown()
+    {
+        TextWriter.instance.StartDialogue();
+    }
+
+    public void SetEvidence(int objectNumber)
+    {
+        currentEvidence = (Evidence)objectNumber;
+    }
+
+
+    void ChooseEvidence()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SetEvidence(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            SetEvidence(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            SetEvidence(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            SetEvidence(3);
+        }
+    }
+
+    void CheckQuestion()
+    {
+        switch (currentEvidence)
+        {
+            case Evidence.obj1:
+                DialogueManager.instance.SetQuestion(0);
+                break;
+            case Evidence.obj2:
+                DialogueManager.instance.SetQuestion(1);
+                break;
+            case Evidence.obj3:
+                DialogueManager.instance.SetQuestion(2);
+                break;
+            case Evidence.obj4:
+                DialogueManager.instance.SetQuestion(3);
+                break;
+        }
+    }
+
+    public void CheckPosition()
     {
         if (transform.position.x == middle.position.x)
         {
@@ -55,7 +116,7 @@ public class Suspect3 : MonoBehaviour
         }
     }
 
-    void CheckMiddle()
+    public void CheckMiddle()
     {
         if (isMiddle)
         {
@@ -64,19 +125,17 @@ public class Suspect3 : MonoBehaviour
 
             if (SuspectManager.instance.isMoving1 || SuspectManager.instance.isMoving2)
             {
-
                 anim.SetBool("outRight", true);
             }
-            /* else if ()
-             {
-                 anim.SetBool("outLeft", true);
-             }
-            */
+
+            DialogueManager.instance.SetSuspect(2);
+            SuspectManager.instance.isMoving3 = false;
+
             isLeft = false;
             isRight = false;
         }
-    }
 
+    }
 
     public void MovementSuspect()
     {
@@ -100,6 +159,3 @@ public class Suspect3 : MonoBehaviour
 
 
 }
-
-
-

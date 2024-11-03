@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using System.IO;
+using System.Collections.Generic;
 
 public class SuspectManager : MonoBehaviour
 {
-    public GameObject[] suspects;
+
     public Suspect suspect;
     public Suspect2 suspect2;
     public Suspect3 suspect3;
-
-
-
+    
     public bool isMoving1;
     public bool isMoving2;
     public bool isMoving3;
@@ -28,9 +28,8 @@ public class SuspectManager : MonoBehaviour
         {
             instance = this;
         }
+
     }
-
-
 
     public void OnButtonPressed(int buttonIndex)
     {
@@ -38,19 +37,19 @@ public class SuspectManager : MonoBehaviour
         {
             case 0:
                 suspect.MovementSuspect();
+               
                 break;
             case 1:
                 suspect2.MovementSuspect();
+                
                 break;
             case 2:
                 suspect3.MovementSuspect();
+                
                 break;
 
         }
 
     }
-
     
-
-
 }

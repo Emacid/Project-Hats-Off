@@ -1,63 +1,86 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static System.TimeZoneInfo;
 
 public class TextWriter : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public string[] lines;
-    public float startDelay;
-    private float textSpeed = 0.07f;
+    public float startDelay = 1f;
+    public float textSpeed = 0.07f; // Bu deðeri gerektiðinde ayarlayabilirsiniz
     private int index;
     public bool endText;
+    private float textDelay;
+
+
+    public static TextWriter instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     private void Start()
     {
         textComponent.text = string.Empty;
         endText = false;
-        Invoke("StartDialogue", startDelay);
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
         index = 0;
+        StopAllCoroutines();  // Diðer coroutineleri durdur
         StartCoroutine(TypeLine());
     }
+
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        textComponent.text = string.Empty; // Diyalog baþýnda temizleyin
+        foreach (char c in DialogueManager.instance.dialogueLines[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
+
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < DialogueManager.instance.dialogueLines.Length - 1)
         {
             index++;
-            textComponent.text = string.Empty;
+            StopAllCoroutines();  // Yeni satýra geçerken önceki coroutineleri durdur
             StartCoroutine(TypeLine());
         }
         else
         {
+            textComponent.text = ""; // Son diyalogdan sonra boþ býrak
         }
     }
+
+    private void FixedUpdate()
+    {
+        textDelay = Time.fixedDeltaTime;
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (textComponent.text == lines[index])
+            if (textComponent.text == DialogueManager.instance.dialogueLines[index])
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                textComponent.text = lines[index];
+                textComponent.text = DialogueManager.instance.dialogueLines[index];
             }
         }
     }
