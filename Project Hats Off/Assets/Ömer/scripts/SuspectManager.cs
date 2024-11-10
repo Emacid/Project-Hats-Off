@@ -13,6 +13,7 @@ public class SuspectManager : MonoBehaviour
 
     private GameObject currentSuspect;  // Þu an ortada olan þüpheli
 
+    public bool isPressed;
 
     public static SuspectManager instance;
 
@@ -33,13 +34,13 @@ public class SuspectManager : MonoBehaviour
     {
         switch (buttonIndex)
         {
-            case 0:
+            case 0 when !isPressed:
                 ShowSuspect(0);
                 break;
-            case 1:
+            case 1 when !isPressed:
                 ShowSuspect(1);
                 break;
-            case 2:
+            case 2 when !isPressed:
                 ShowSuspect(2);
                 break;
 
@@ -61,13 +62,14 @@ public class SuspectManager : MonoBehaviour
     {
         float lerpTime = 0f;
         Vector3 startingPosition = suspect.transform.position;
-
         while (lerpTime < 1f)
         {
             suspect.transform.position = Vector3.Lerp(startingPosition, targetPosition, lerpTime);
             lerpTime += Time.deltaTime * moveSpeed;
+            isPressed = true;
             yield return null;
             suspect.transform.position = targetPosition;
+            isPressed = false;
         }
     }
 }

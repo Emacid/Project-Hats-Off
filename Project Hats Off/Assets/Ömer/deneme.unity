@@ -1348,8 +1348,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 81ecfc9a9ef9c08428d0ec7c3b3ccaa7, type: 3}
   - {fileID: 4900000, guid: 6bdef50662ba66e4cae8784dd82151ee, type: 3}
   dialogueLines: []
-  anim: {fileID: 0}
-  isDialogue: 0
   moveUIParent: {fileID: 747195243}
   checkpointWaitTime: 1
   currentSuspect: 0
@@ -1563,7 +1561,7 @@ GameObject:
   - component: {fileID: 765286058}
   - component: {fileID: 765286057}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ImageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,8 +10,6 @@ public class Move : MonoBehaviour
     private float lerpTime = 0;
     public float movementSpeed = 0.5f; 
 
-    public GameObject[] leftPos;
-    public GameObject[] rightPos;
 
     private void Start()
     {
