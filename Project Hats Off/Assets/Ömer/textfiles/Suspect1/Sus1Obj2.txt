@@ -1,3 +1,4 @@
+obje 2 soru 1
 obje 2 cevap 1 
 obje 2 cevap 2 
 obje 2 cevap 3

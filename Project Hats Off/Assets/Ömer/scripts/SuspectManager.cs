@@ -6,21 +6,20 @@ using System.Collections.Generic;
 public class SuspectManager : MonoBehaviour
 {
 
-    public Suspect suspect;
-    public Suspect2 suspect2;
-    public Suspect3 suspect3;
-    
-    public bool isMoving1;
-    public bool isMoving2;
-    public bool isMoving3;
+    public GameObject[] suspects;  // Þüpheli GameObject'leri
+    public Transform middlePosition;
+    public Transform rightPosition;
+    public float moveSpeed = 0.5f;  // Hareket hýzý
 
-  
+    private GameObject currentSuspect;  // Þu an ortada olan þüpheli
+
+
     public static SuspectManager instance;
 
 
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
@@ -28,7 +27,6 @@ public class SuspectManager : MonoBehaviour
         {
             instance = this;
         }
-
     }
 
     public void OnButtonPressed(int buttonIndex)
@@ -36,20 +34,42 @@ public class SuspectManager : MonoBehaviour
         switch (buttonIndex)
         {
             case 0:
-                suspect.MovementSuspect();
-               
+                ShowSuspect(0);
                 break;
             case 1:
-                suspect2.MovementSuspect();
-                
+                ShowSuspect(1);
                 break;
             case 2:
-                suspect3.MovementSuspect();
-                
+                ShowSuspect(2);
                 break;
 
         }
 
     }
-    
+    public void ShowSuspect(int suspectIndex)
+    {
+        if (currentSuspect != null)
+        {
+            StartCoroutine(MoveToPosition(currentSuspect, rightPosition.position));
+        }
+
+        currentSuspect = suspects[suspectIndex];
+        StartCoroutine(MoveToPosition(currentSuspect, middlePosition.position));
+    }
+
+    private IEnumerator MoveToPosition(GameObject suspect, Vector3 targetPosition)
+    {
+        float lerpTime = 0f;
+        Vector3 startingPosition = suspect.transform.position;
+
+        while (lerpTime < 1f)
+        {
+            suspect.transform.position = Vector3.Lerp(startingPosition, targetPosition, lerpTime);
+            lerpTime += Time.deltaTime * moveSpeed;
+            yield return null;
+            suspect.transform.position = targetPosition;
+        }
+    }
 }
+    
+

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using System.IO;
 
@@ -8,13 +9,19 @@ public class DialogueManager : MonoBehaviour
     private TextAsset[,] textFiles = new TextAsset[3, 4];
     public string[] dialogueLines;
 
+    public Move moveUIParent;
+    public float checkpointWaitTime = 1.0f; 
+
     public enum Suspect { Suspect1, Suspect2, Suspect3 }
     public Suspect currentSuspect;
     public enum Question {  Question1, Question2, Question3, Question4 }
     public Question currentQuestion;
-
+    public enum Evidence { obj1, obj2, obj3, obj4 }
+    public Evidence currentEvidence;
 
     public static DialogueManager instance;
+
+    private int dialogueIndex = 0;
 
     private void Awake()
     {
@@ -27,6 +34,12 @@ public class DialogueManager : MonoBehaviour
             instance = this;
         }
         InitializeTextFiles();
+    }
+
+    private void Update()
+    {
+        ChooseEvidence();
+    
     }
 
     void InitializeTextFiles()
@@ -48,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     public void SetSuspect(int suspectNumber)
     {
         currentSuspect = (Suspect)suspectNumber;
-        LoadDialogue();  
+      //  DialogueLoader.instance.DialogueUpdate();
     }
 
     public void SetQuestion(int questionNumber)
@@ -56,7 +69,88 @@ public class DialogueManager : MonoBehaviour
         currentQuestion = (Question)questionNumber;
     }
 
-    private void LoadDialogue()
+    public void SetEvidence(int objectNumber)
+    {
+        currentEvidence = (Evidence)objectNumber;
+
+        switch (currentEvidence)
+        {
+            case Evidence.obj1:
+                SetQuestion(0);
+                break;
+            case Evidence.obj2:
+                SetQuestion(1);
+                break;
+            case Evidence.obj3:
+                SetQuestion(2);
+                break;
+            case Evidence.obj4:
+                SetQuestion(3);
+                break;
+        }
+    }
+
+    void ChooseEvidence()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SetEvidence(0);
+            LoadDialogue(); //diyaloglarý belirliyor 
+            ImageTextManager.instance.DialogueWrite(); //diyaloglarý image image ayýrýp yazýyor
+            StartCoroutine(MovementCoroutine()); //diyaloglarýn aþaðý inmesini saðlýyor.
+
+        }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            SetEvidence(1);
+            LoadDialogue();
+            ImageTextManager.instance.DialogueWrite();
+            StartCoroutine(MovementCoroutine()); 
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            SetEvidence(2);
+            LoadDialogue();
+            ImageTextManager.instance.DialogueWrite();
+            StartCoroutine(MovementCoroutine());
+
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            SetEvidence(3);
+            LoadDialogue();
+            ImageTextManager.instance.DialogueWrite();
+            StartCoroutine(MovementCoroutine());
+        }
+    }
+
+
+
+
+    private IEnumerator MovementCoroutine()
+    {
+        yield return StartCoroutine(StartMovement());
+     
+    }
+
+    private IEnumerator StartMovement()
+    {
+        while (dialogueIndex < dialogueLines.Length)
+        {
+
+            while (!moveUIParent.Movement())
+            {
+                yield return null; 
+            }
+
+            yield return new WaitForSeconds(checkpointWaitTime);
+
+            dialogueIndex++;
+        }
+
+    }
+
+    public void LoadDialogue()
     {
         int suspectIndex = (int)currentSuspect;
         int questionIndex = (int)currentQuestion;
@@ -64,6 +158,7 @@ public class DialogueManager : MonoBehaviour
         if (textFiles[suspectIndex, questionIndex] != null)
         {
             dialogueLines = textFiles[suspectIndex, questionIndex].text.Split('\n');
+            
         };
         }
      
