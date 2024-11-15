@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ButtonsFirstFolder : MonoBehaviour
 {
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +14,6 @@ public class ButtonsFirstFolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

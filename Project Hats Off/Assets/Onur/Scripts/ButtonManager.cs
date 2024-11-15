@@ -1,11 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ButtonManager : MonoBehaviour
 {
     private GameObject clickedObjectOnMouseDown = null;
     private float mouseDownTime; // Fare basýldýðý andaki zamaný saklayacak
     public float clickThreshold = 0.2f; // Týklama sayýlacak maksimum süre (0.2 saniye örneði)
+    public bool clickedOnSuspect = false;
+
+    public GameObject text01;
+    public Transform allTextsParent;
+
+    public bool canCloseTheOutline = false;
 
     void Update()
     {
@@ -36,40 +43,63 @@ public class ButtonManager : MonoBehaviour
 
                 if (hits.Length > 0)
                 {
-                    // Týklanan bütün nesneleri kontrol et
-                    List<GameObject> clickedObjects = new List<GameObject>();
+                    // Týklanan nesneleri `sortingOrder` deðerine göre sýrala
+                    List<GameObject> clickedObjects = hits
+                        .Select(hit => hit.collider.gameObject)
+                        .OrderByDescending(obj => GetSortingOrder(obj))
+                        .ToList();
 
-                    foreach (RaycastHit2D hit in hits)
+                    // Týklanan nesneleri sýralý bir þekilde loga yazdýr
+                    Debug.Log("Týklanan nesneler (üstten alta doðru):");
+                    for (int i = 0; i < clickedObjects.Count; i++)
                     {
-                        GameObject clickedObject = hit.collider.gameObject;
-                        clickedObjects.Add(clickedObject);
-                    }
-
-                    // Týklanan nesneleri loga yazdýr ve kontrol et
-                    Debug.Log("Týklanan nesneler:");
-                    foreach (GameObject obj in clickedObjects)
-                    {
-                        Debug.Log(obj.name);
+                        GameObject obj = clickedObjects[i];
+                        int sortingOrder = GetSortingOrder(obj);
+                        Debug.Log($"{i + 1}: {obj.name} (Layer: {sortingOrder})");
 
                         // Eðer MouseDown'da týklanan nesne ile aynýysa
                         if (obj == clickedObjectOnMouseDown)
                         {
+                            
                             // Eðer týklanan nesnenin adý "Clickable2" ise
                             if (obj.name == "Clickable2")
                             {
                                 Debug.Log("Sonunda týkladýn!");
                             }
-                        }
+                            else if (obj.name == "AnimatedCircle1")
+                                {
+                                InstantiateTexts(text01);
+                                GameObject.Find("AnimatedCircle1").SetActive(false); //Burayý daha sonrasýnda bütün kaðýttaki evidence'lar kapanacak þekilde deðiþtir!!!!
+                                }
+                            }
                     }
                 }
-            }
-            else
-            {
-                //Debug.Log("Týklama sayýlmadý, çünkü fare uzun süre basýlý tutuldu.");
             }
 
             // Mouse býrakýldýðýnda týklanan nesneyi sýfýrla
             clickedObjectOnMouseDown = null;
         }
+    }
+
+    // Nesnenin veya çocuk nesnelerinin `SpriteRenderer` bileþeninden `sortingOrder` deðerini alýr
+    private int GetSortingOrder(GameObject obj)
+    {
+        // Önce nesnenin kendisinde `SpriteRenderer` olup olmadýðýný kontrol et
+        SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+
+        // Eðer `SpriteRenderer` yoksa, alt nesnelerde kontrol et
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = obj.GetComponentInChildren<SpriteRenderer>();
+        }
+
+        // `SpriteRenderer` bulunduysa `sortingOrder` deðerini döndür, yoksa en düþük deðeri döndür
+        return spriteRenderer != null ? spriteRenderer.sortingOrder : int.MinValue;
+    }
+
+    private void InstantiateTexts(GameObject textnumber) 
+    {
+        Instantiate(textnumber, allTextsParent);
+        canCloseTheOutline = true;
     }
 }
