@@ -21,6 +21,8 @@ public class SwapPos : MonoBehaviour
 
     public DraggableObject DraggableObjectScript;
     private Vector2 originalPos;
+    private Vector2 decrasePos;
+    private Vector2 decrasePosForMiniFolder;
 
     public float[] values;
 
@@ -30,7 +32,8 @@ public class SwapPos : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         originalPos = new Vector2(0, 0);
-
+        decrasePos = new Vector2(0, -20);
+        decrasePosForMiniFolder = new Vector2(0, -19.125f);
     }
 
     // Update is called once per frame
@@ -115,6 +118,7 @@ public class SwapPos : MonoBehaviour
         StartCoroutine(ReturnToNormalPos(0.8f));
 
         //animator.SetBool("canOpenTheObject", true);
+        folderObject.transform.localPosition = originalPos + decrasePos;
         animator.SetTrigger("canOpenTheObject");
         FolderPageAnimator.SetTrigger("GoUpNow");
         gameObject.layer = 8;
@@ -129,7 +133,7 @@ public class SwapPos : MonoBehaviour
         gameObject.transform.Translate(0, 5.0f, 0);
         boxCollider2D.enabled = true;
         //boxCollider2D.isTrigger = true;
-        folderObject.transform.localPosition = Vector2.MoveTowards(folderObject.transform.localPosition, Vector2.zero, -150.0f * Time.deltaTime);
+        //folderObject.transform.localPosition = Vector2.MoveTowards(folderObject.transform.localPosition, Vector2.zero, -350.0f * Time.deltaTime);
         yield return new WaitForSeconds(1);
         DraggableObjectScript.isDraggable = true;
         DraggableObjectScript.PageOffset();
@@ -141,6 +145,7 @@ public class SwapPos : MonoBehaviour
         DraggableObjectScript.isDraggable = false;
         boxCollider2D.isTrigger = true;
         boxCollider2D.size = new Vector2(values[0], values[1]);
+        draggableObject.transform.localPosition = originalPos + decrasePosForMiniFolder;
         animator.SetTrigger("goToOriginalPos");
         //tableCollider.enabled = false;
         FolderPageAnimator.SetTrigger("goToOriginalPos");
@@ -153,6 +158,7 @@ public class SwapPos : MonoBehaviour
             gameObject.layer = 7;
         }
         gameObject.layer = 6;
+        gameObject.transform.Translate(0, 2.2f, 0);
         StartCoroutine(ReturnToNormalPos2(1.0f));
     }
 
@@ -160,13 +166,14 @@ public class SwapPos : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-
-        gameObject.transform.Translate(0, 2.2f, 0);
-
-
+        
+        //gameObject.transform.Translate(0, 2.2f, 0);
 
 
-        draggableObject.transform.localPosition = Vector2.MoveTowards(draggableObject.transform.localPosition, Vector2.zero, 100.0f * Time.deltaTime);
+
+
+        //draggableObject.transform.localPosition = Vector2.MoveTowards(draggableObject.transform.localPosition, Vector2.zero, 190.0f * Time.deltaTime);
+
 
 
 

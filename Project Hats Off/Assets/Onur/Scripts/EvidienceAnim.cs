@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EvidenceAnim : MonoBehaviour
+public class EvidienceAnim : MonoBehaviour
 {
     private GameObject childObject;
     private Collider2D objectCollider;
@@ -31,7 +31,7 @@ public class EvidenceAnim : MonoBehaviour
         // Fare collider'ýn içinde mi kontrol ediyoruz
         if (objectCollider != null && objectCollider.OverlapPoint(mousePosition))
         {
-            if (childObject != null && !childObject.activeSelf && buttonManager.clickedOnSuspect) 
+            if (childObject != null && !childObject.activeSelf && buttonManager.clickedOnSuspect && !buttonManager.startedConversation) 
 
             {
                 childObject.SetActive(true); // Child objeyi aktif yap

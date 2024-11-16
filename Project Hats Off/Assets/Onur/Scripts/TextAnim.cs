@@ -11,14 +11,12 @@ public class TextAnim : MonoBehaviour
     [SerializeField] private int textBoxNumber = 6; // Unity'den ayarlanabilir maksimum sýnýr
     private int currentTriggerIndex = -1; // Hangi trigger'da olduðumuzu tutar
 
+    public ButtonManager ButtonManager;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-
-        // Baþlangýçta ilk tetiklemeyi yap
-        //animator.SetTrigger($"New Trigger {currentTriggerIndex}");
-        //StartCoroutine(WaitForDelay(currentTriggerIndex));
+        ButtonManager = GameObject.Find("Question Button Manager").GetComponent<ButtonManager>();
     }
 
     // Butonla çaðrýlacak fonksiyon
@@ -37,6 +35,16 @@ public class TextAnim : MonoBehaviour
         {
             animator.SetTrigger($"New Trigger {currentTriggerIndex}");
             StartCoroutine(WaitForDelay(currentTriggerIndex));
+        }
+        else if (currentTriggerIndex == textBoxNumber - 1)
+        {
+            // Eðer belirtilen sayýya ulaþýldýysa animasyonlarý tetikle
+            VanishRightAnimator.SetTrigger("VanishRightTrigger");
+            VanishLeftAnimator.SetTrigger("VanishLeftTrigger");
+            Debug.Log("Animasyon tetiklendi: VanishRightTrigger ve VanishLeftTrigger");
+            ButtonManager.startedConversation = false;
+            ButtonManager.CanTriggerTalkAgain = true;
+            ButtonManager.clickedOnSuspect = false;
         }
     }
 

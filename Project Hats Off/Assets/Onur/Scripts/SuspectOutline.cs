@@ -10,14 +10,32 @@ public class SuspectOutline : MonoBehaviour
     public ButtonManager buttonManager;
 
     public bool canInteract = true;
-    private bool notTalking = true;
+    public bool notTalking = true;
 
     private int objectCount = 0; // Object etiketine sahip nesnelerin sayýsý
     private int photoCount = 0;  // Photo etiketine sahip nesnelerin sayýsý
 
     void Start()
     {
+        if (buttonManager != null)
+        {
+            buttonManager.OnCanTriggerTalkAgainChanged += HandleCanTriggerTalkAgainChanged;
+        }
+    }
 
+    void OnDestroy()
+    {
+        if (buttonManager != null)
+        {
+            buttonManager.OnCanTriggerTalkAgainChanged -= HandleCanTriggerTalkAgainChanged;
+        }
+    }
+    private void HandleCanTriggerTalkAgainChanged(bool value)
+    {
+        if (value)
+        {
+            notTalking = true;
+        }
     }
 
     void Update()
@@ -27,9 +45,14 @@ public class SuspectOutline : MonoBehaviour
             redOutlineRenderer.enabled = false;
         }
 
-        if (buttonManager.canCloseTheOutline) 
+        if (buttonManager.canCloseTheOutline)
         {
             CloseTheOutline();
+        }
+
+        if (buttonManager.CanTriggerTalkAgain)
+        {
+            notTalking = true;
         }
     }
 
@@ -88,7 +111,7 @@ public class SuspectOutline : MonoBehaviour
         canInteract = (objectCount == 0 && photoCount == 0);
     }
 
-    private void CloseTheOutline() 
+    private void CloseTheOutline()
     {
         redOutlineRenderer.enabled = false;
         notTalking = false;
