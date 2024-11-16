@@ -86,7 +86,7 @@ public class DraggableObject : MonoBehaviour
         {
             folderDraggableObject.transform.localPosition = originalPos;
         }
-
+        Cursor.visible = false;
         if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
         Vector2 newPos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - difference;
 
@@ -95,7 +95,10 @@ public class DraggableObject : MonoBehaviour
 
         transform.position = newPos;
     }
-
+    private void OnMouseUp()
+    {
+        Cursor.visible = true;
+    }
     public void PageOffset()
     {
         Vector3 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z));

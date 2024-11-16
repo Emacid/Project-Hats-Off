@@ -13,6 +13,8 @@ public class PageChanger : MonoBehaviour
     public SpriteRenderer folderSprite;
     public Sprite[] changingSprites;
 
+    public int maxPageNumber = 4;
+
     private void Start()
     {
         // Baþlangýçta tüm sayfalarý kapat ve sadece myPage'i aktif yap
@@ -54,6 +56,13 @@ public class PageChanger : MonoBehaviour
     {
         int nextPage = myPage + direction;
 
+        // Eðer bir sonraki sayfa sýnýrlarýn dýþýndaysa iþlem yapma
+        if (nextPage < 1 || nextPage > maxPageNumber)
+        {
+            Debug.Log("Sayfa sýnýrlarý aþýlamaz.");
+            return;
+        }
+
         // Mevcut sayfayý deaktive et
         if (myPage > 0 && myPage <= allPages.Length)
         {
@@ -70,7 +79,7 @@ public class PageChanger : MonoBehaviour
         UpdateFolderSprite(nextPage);
 
         // Sayfa indeksini güncelle
-        myPage = nextPage;
+        //myPage = nextPage;
     }
 
     private void UpdateFolderSprite(int nextPage)
