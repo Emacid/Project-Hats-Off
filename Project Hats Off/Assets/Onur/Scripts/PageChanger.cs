@@ -17,13 +17,7 @@ public class PageChanger : MonoBehaviour
 
     private void Start()
     {
-        // Baþlangýçta tüm sayfalarý kapat ve sadece myPage'i aktif yap
-        for (int i = 0; i < allPages.Length; i++)
-        {
-            allPages[i].SetActive(i == myPage - 1); // Sadece myPage-1 açýk
-        }
-
-        // Baþlangýç sprite'ýný ayarla
+        UpdatePageVisibility();
         UpdateFolderSprite(myPage);
     }
 
@@ -33,61 +27,72 @@ public class PageChanger : MonoBehaviour
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            // Mouse'un pozisyonundaki Collider'ý bul
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            // Tüm Collider'larý kontrol etmek için RaycastAll kullanýyoruz
+            RaycastHit2D[] hits = Physics2D.RaycastAll(mousePosition, Vector2.zero);
 
-            if (hit.collider != null && hit.collider.gameObject == this.gameObject) // Doðrudan bu objeyi kontrol et
+            foreach (RaycastHit2D hit in hits)
             {
-                if (this.gameObject.name == "Forward")
+                if (hit.collider != null && hit.collider.gameObject == this.gameObject)
                 {
-                    Debug.Log("Bir Sonraki Sayfaya Geçiþ Yapýlýyor!");
-                    HandlePageChange(1); // Ýleri sayfa
-                }
-                else if (this.gameObject.name == "Backward")
-                {
-                    Debug.Log("Bir Önceki Sayfaya Geçiþ Yapýlýyor!");
-                    HandlePageChange(-1); // Geri sayfa
+                    if (this.gameObject.name == "Forward")
+                    {
+                        Debug.Log("Bir Sonraki Sayfaya Geçiþ Yapýlýyor!");
+                        HandlePageChange(1); // Ýleri sayfa
+                    }
+                    else if (this.gameObject.name == "Backward")
+                    {
+                        Debug.Log("Bir Önceki Sayfaya Geçiþ Yapýlýyor!");
+                        HandlePageChange(-1); // Geri sayfa
+                    }
+                    break; // Doðru objeyi bulduðumuzda döngüyü sonlandýr
                 }
             }
         }
     }
 
+
     private void HandlePageChange(int direction)
     {
         int nextPage = myPage + direction;
 
-        // Eðer bir sonraki sayfa sýnýrlarýn dýþýndaysa iþlem yapma
         if (nextPage < 1 || nextPage > maxPageNumber)
         {
-            Debug.Log("Sayfa sýnýrlarý aþýlamaz.");
+            Debug.Log("Sayfa sýnýrlarý aþýldý.");
             return;
         }
 
-        // Mevcut sayfayý deaktive et
+        // Mevcut sayfayý kapat
         if (myPage > 0 && myPage <= allPages.Length)
         {
             allPages[myPage - 1].SetActive(false);
         }
 
-        // Bir sonraki sayfayý aktive et
+        // Bir sonraki sayfayý aç
         if (nextPage > 0 && nextPage <= allPages.Length)
         {
             allPages[nextPage - 1].SetActive(true);
         }
 
-        // Sprite dosyasýný deðiþtir
+        // Sprite güncelle
         UpdateFolderSprite(nextPage);
 
-        // Sayfa indeksini güncelle
+        // Sayfa numarasýný güncelle
         //myPage = nextPage;
     }
 
-    private void UpdateFolderSprite(int nextPage)
+    private void UpdatePageVisibility()
     {
-        // nextPage 1'den büyük ve changingSprites dizisinde mevcutsa güncelle
-        if (nextPage > 0 && nextPage <= changingSprites.Length)
+        for (int i = 0; i < allPages.Length; i++)
         {
-            folderSprite.sprite = changingSprites[nextPage - 1];
+            allPages[i].SetActive(i == myPage - 1);
+        }
+    }
+
+    private void UpdateFolderSprite(int page)
+    {
+        if (page > 0 && page <= changingSprites.Length)
+        {
+            folderSprite.sprite = changingSprites[page - 1];
         }
     }
 }

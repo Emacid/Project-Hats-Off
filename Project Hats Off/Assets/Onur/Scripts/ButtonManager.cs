@@ -9,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     private float mouseDownTime; // Fare basýldýðý andaki zamaný saklayacak
     public float clickThreshold = 0.2f; // Týklama sayýlacak maksimum süre (0.2 saniye örneði)
     public bool clickedOnSuspect = false;
+    public bool canShowOutlineOfEvidiences = false;
 
     private bool canTriggerTalkAgain;
     public bool CanTriggerTalkAgain
@@ -26,7 +27,7 @@ public class ButtonManager : MonoBehaviour
 
     public bool startedConversation = false;
 
-    public GameObject text01;
+    public GameObject[] texts;
     public Transform allTextsParent;
 
     public bool canCloseTheOutline = false;
@@ -82,7 +83,13 @@ public class ButtonManager : MonoBehaviour
                         else if (obj.name == "AnimatedCircle1")
                         {
                             Debug.Log("Text gelmesi lazým!");
-                            InstantiateTexts(text01);
+                            InstantiateTexts(texts[0]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "evidence_hover")
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[1]);
                             obj.gameObject.SetActive(false);
                         }
                     }
@@ -110,5 +117,6 @@ public class ButtonManager : MonoBehaviour
         canCloseTheOutline = true;
         startedConversation = true;
         CanTriggerTalkAgain = false;
+        canShowOutlineOfEvidiences = false;
     }
 }

@@ -78,6 +78,7 @@ public class SuspectOutline : MonoBehaviour
         {
             redOutlineRenderer.enabled = true;
             buttonManager.clickedOnSuspect = true;
+            buttonManager.canShowOutlineOfEvidiences = true;
         }
     }
 
