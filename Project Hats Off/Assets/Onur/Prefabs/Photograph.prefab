@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2407764938035483087}
   - component: {fileID: 2498803549679458704}
   - component: {fileID: 2878111981279974913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ClickableText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "E am\u0131n\u0131za koyay\u0131m"
+  m_text: E Project Hats Off
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 856887567200041007}
   - component: {fileID: 141402765937818072}
   - component: {fileID: 2919236950447934197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FolderOpenPage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 2660313832065663703}
   - component: {fileID: 6100865295391832804}
   - component: {fileID: 7811797047125078246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Clickable2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,9 +529,9 @@ GameObject:
   - component: {fileID: 6374613222042157042}
   - component: {fileID: 2985501395696449537}
   - component: {fileID: 8618428005701407925}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Photograph
-  m_TagString: Untagged
+  m_TagString: Photo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -585,7 +585,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0003553629, y: -0.00071144104}
+  m_Offset: {x: -0.003369093, y: -0.00071132183}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -596,7 +596,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.85}
+  m_Size: {x: 0.8876538, y: 0.64447856}
   m_EdgeRadius: 0
 --- !u!50 &4445743665669495796
 Rigidbody2D:
@@ -613,7 +613,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -651,6 +651,7 @@ MonoBehaviour:
   bottomOffset: 0
   topOffsetWhenPageIsUp: 1.55
   bottomOffsetWhenPageIsUp: 0.5
+  outOfBoundsOffset: 0.1
 --- !u!114 &6374613222042157042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3264f9076b541f24d92e3d107831c53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 3, y: -3.2}
+  startPos: {x: 5.3, y: 2.1}
 --- !u!114 &2985501395696449537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,8 +687,8 @@ MonoBehaviour:
   folderObject: {fileID: 3116882962889685366}
   DraggableObjectScript: {fileID: 5403594837079961209}
   values:
-  - 1.4
-  - 1.85
+  - 0.887
+  - 0.644
   - 3.8
   - 5.2
 --- !u!114 &8618428005701407925
@@ -711,21 +712,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2086907740304476580}
     m_Modifications:
+    - target: {fileID: 1007051749242709666, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8876538
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007051749242709666, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6444786
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236699747358936563, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c60e0a1b384614943847589f1d2a1500, type: 3}
     - target: {fileID: 1236699747358936563, guid: 15de06b939c13fd488acb9a310742680, type: 3}
       propertyPath: m_Color.b
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1236699747358936563, guid: 15de06b939c13fd488acb9a310742680, type: 3}
       propertyPath: m_Color.g
-      value: 0.5416579
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1236699747358936563, guid: 15de06b939c13fd488acb9a310742680, type: 3}
       propertyPath: m_Color.r
-      value: 0.8352941
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5209306861966058394, guid: 15de06b939c13fd488acb9a310742680, type: 3}
       propertyPath: m_Name
       value: DraggableObject1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209306861966058394, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430096095680540310, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5731121861994571389, guid: 15de06b939c13fd488acb9a310742680, type: 3}
       propertyPath: m_LocalPosition.x
@@ -766,6 +787,14 @@ PrefabInstance:
     - target: {fileID: 5731121861994571389, guid: 15de06b939c13fd488acb9a310742680, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002437104468553259, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002437104468553259, guid: 15de06b939c13fd488acb9a310742680, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
