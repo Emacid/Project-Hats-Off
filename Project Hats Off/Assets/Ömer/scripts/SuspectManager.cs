@@ -29,7 +29,10 @@ public class SuspectManager : MonoBehaviour
             instance = this;
         }
     }
-
+    private void Start()
+    {
+        ShowSuspect(0);
+    }
     public void OnButtonPressed(int buttonIndex)
     {
         switch (buttonIndex)
