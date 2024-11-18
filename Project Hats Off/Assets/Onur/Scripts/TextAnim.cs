@@ -6,6 +6,7 @@ public class TextAnim : MonoBehaviour
     private Animator animator;
     public Animator VanishRightAnimator;
     public Animator VanishLeftAnimator;
+    private Asistant asistantMechanic;
 
     public GameObject[] texts;
     [SerializeField] private int textBoxNumber = 6; // Unity'den ayarlanabilir maksimum sýnýr
@@ -17,34 +18,43 @@ public class TextAnim : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         ButtonManager = GameObject.Find("Question Button Manager").GetComponent<ButtonManager>();
+        asistantMechanic = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
     }
 
     // Butonla çaðrýlacak fonksiyon
     public void TriggerNextAnimation()
     {
-        // Eðer mevcut tetikleme sayýsý belirlenen sýnýrý aþarsa hiçbir þey yapma
-        if (currentTriggerIndex >= textBoxNumber - 1)
-        {
-            Debug.Log("Maksimum sýnýra ulaþýldý.");
-            return; // Daha fazla iþlem yapýlmaz
-        }
 
-        // Sonraki trigger'ý çalýþtýr
-        currentTriggerIndex++; // Index'i artýr
-        if (currentTriggerIndex < textBoxNumber - 1)
+        if (!asistantMechanic.isClickedOnAsistant) 
         {
-            animator.SetTrigger($"New Trigger {currentTriggerIndex}");
-            StartCoroutine(WaitForDelay(currentTriggerIndex));
-        }
-        else if (currentTriggerIndex == textBoxNumber - 1)
+            // Eðer mevcut tetikleme sayýsý belirlenen sýnýrý aþarsa hiçbir þey yapma
+            if (currentTriggerIndex >= textBoxNumber - 1)
+            {
+                Debug.Log("Maksimum sýnýra ulaþýldý.");
+                return; // Daha fazla iþlem yapýlmaz
+            }
+
+            // Sonraki trigger'ý çalýþtýr
+            currentTriggerIndex++; // Index'i artýr
+            if (currentTriggerIndex < textBoxNumber - 1)
+            {
+                animator.SetTrigger($"New Trigger {currentTriggerIndex}");
+                StartCoroutine(WaitForDelay(currentTriggerIndex));
+            }
+            else if (currentTriggerIndex == textBoxNumber - 1)
+            {
+                // Eðer belirtilen sayýya ulaþýldýysa animasyonlarý tetikle
+                VanishRightAnimator.SetTrigger("VanishRightTrigger");
+                VanishLeftAnimator.SetTrigger("VanishLeftTrigger");
+                Debug.Log("Animasyon tetiklendi: VanishRightTrigger ve VanishLeftTrigger");
+                ButtonManager.startedConversation = false;
+                ButtonManager.CanTriggerTalkAgain = true;
+                ButtonManager.clickedOnSuspect = false;
+                }
+            }
+        else if(asistantMechanic.isClickedOnAsistant)
         {
-            // Eðer belirtilen sayýya ulaþýldýysa animasyonlarý tetikle
-            VanishRightAnimator.SetTrigger("VanishRightTrigger");
-            VanishLeftAnimator.SetTrigger("VanishLeftTrigger");
-            Debug.Log("Animasyon tetiklendi: VanishRightTrigger ve VanishLeftTrigger");
-            ButtonManager.startedConversation = false;
-            ButtonManager.CanTriggerTalkAgain = true;
-            ButtonManager.clickedOnSuspect = false;
+            asistantMechanic.SpawnAsistantText();
         }
     }
 

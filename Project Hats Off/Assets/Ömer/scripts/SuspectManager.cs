@@ -16,7 +16,7 @@ public class SuspectManager : MonoBehaviour
     public bool isPressed;
 
     public static SuspectManager instance;
-
+    public ButtonManager buttonManager;
 
     private void Awake()
     {
@@ -59,6 +59,7 @@ public class SuspectManager : MonoBehaviour
 
         currentSuspect = suspects[suspectIndex];
         StartCoroutine(MoveToPosition(currentSuspect, middlePosition.position));
+        buttonManager.suspectInMiddle = suspectIndex+1;
     }
 
     private IEnumerator MoveToPosition(GameObject suspect, Vector3 targetPosition)

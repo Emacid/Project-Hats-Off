@@ -11,6 +11,12 @@ public class ButtonManager : MonoBehaviour
     public bool clickedOnSuspect = false;
     public bool canShowOutlineOfEvidiences = false;
 
+    public Asistant asistantMechanic;
+
+    public int suspectInMiddle = 1;
+
+    public SuspectOutline[] suspectScripts;
+
     private bool canTriggerTalkAgain;
     public bool CanTriggerTalkAgain
     {
@@ -80,17 +86,22 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Sonunda týkladýn!");
                         }
-                        else if (obj.name == "AnimatedCircle1")
+                        if (obj.name == "AnimatedCircle1" && suspectInMiddle == 1)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[0]);
                             obj.gameObject.SetActive(false);
                         }
-                        else if (obj.name == "evidence_hover")
+                        if (obj.name == "evidence_hover" && suspectInMiddle == 1 && suspectScripts[0].notTalking)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[1]);
                             obj.gameObject.SetActive(false);
+                        }
+                        if (obj.name == "AsistantEvidienceHover")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText();
                         }
                     }
                 }

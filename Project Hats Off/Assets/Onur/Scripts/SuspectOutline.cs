@@ -12,6 +12,8 @@ public class SuspectOutline : MonoBehaviour
     public bool canInteract = true;
     public bool notTalking = true;
 
+    public Asistant asistantMechanic;
+
     private int objectCount = 0; // Object etiketine sahip nesnelerin sayýsý
     private int photoCount = 0;  // Photo etiketine sahip nesnelerin sayýsý
 
@@ -58,7 +60,7 @@ public class SuspectOutline : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (canInteract)
+        if (canInteract )
         {
             grayOutlineRenderer.enabled = true;
         }
@@ -74,7 +76,12 @@ public class SuspectOutline : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (canInteract && notTalking)
+        if (canInteract && notTalking && asistantMechanic.isClickedOnAsistant)
+        {
+            asistantMechanic.SpawnAsistantText();
+        }
+
+        else if (canInteract && notTalking )
         {
             redOutlineRenderer.enabled = true;
             buttonManager.clickedOnSuspect = true;

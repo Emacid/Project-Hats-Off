@@ -312,6 +312,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7606557475682480779}
     m_Modifications:
+    - target: {fileID: 187408103652694086, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_text
+      value: MAN I DONT KNOW!! FOR REAL JUST LET ME GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 187408103652694086, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
+    - target: {fileID: 187408103652694086, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 807631939143774141, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -428,6 +440,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881454708109827102, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_text
+      value: MAN I DONT KNOW!! FOR REAL JUST LET ME GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881454708109827102, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
+    - target: {fileID: 2881454708109827102, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4391008638435014999, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
       propertyPath: ButtonManager
       value: 
@@ -464,6 +488,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5369369908240070820, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_text
+      value: MAN I DONT KNOW!! FOR REAL JUST LET ME GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369369908240070820, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
+    - target: {fileID: 5369369908240070820, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5590343849915029487, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -502,6 +538,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5738470860711520758, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065344764467314027, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_text
+      value: MAN I DONT KNOW!! FOR REAL JUST LET ME GO
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065344764467314027, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
+    - target: {fileID: 6065344764467314027, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9064290791257379568, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
+    - target: {fileID: 6065344764467314027, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6479817743047799586, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
