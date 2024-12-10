@@ -8,8 +8,8 @@ public class DialogueManager : MonoBehaviour
     public TextAsset[] textAssets;
     private TextAsset[,] textFiles = new TextAsset[3, 4];
     public string[] dialogueLines;
+    public DialogueMovement dialogueMovement;
 
-    public Move moveUIParent;
     public float checkpointWaitTime = 1.0f; 
 
     public enum Suspect { Suspect1, Suspect2, Suspect3 }
@@ -39,7 +39,6 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         ChooseEvidence();
-    
     }
 
     void InitializeTextFiles()
@@ -124,9 +123,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
-
-
     private IEnumerator MovementCoroutine()
     {
         yield return StartCoroutine(StartMovement());
@@ -138,16 +134,19 @@ public class DialogueManager : MonoBehaviour
         while (dialogueIndex < dialogueLines.Length)
         {
 
-            while (!moveUIParent.Movement())
+            while (!dialogueMovement.Movement())
             {
                 yield return null; 
+                
             }
 
             yield return new WaitForSeconds(checkpointWaitTime);
-
             dialogueIndex++;
         }
+        dialogueIndex = 0;
 
+        print("diyalog bitti");
+        dialogueMovement.FinishMove();
     }
 
     public void LoadDialogue()
