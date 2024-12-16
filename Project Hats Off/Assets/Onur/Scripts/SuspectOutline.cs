@@ -6,6 +6,8 @@ public class SuspectOutline : MonoBehaviour
 {
     public SpriteRenderer grayOutlineRenderer;
     public SpriteRenderer redOutlineRenderer;
+    public SpriteRenderer redOutlineRenderer2;
+    public SpriteRenderer redOutlineRenderer3;
 
     public ButtonManager buttonManager;
 
@@ -83,7 +85,7 @@ public class SuspectOutline : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (isOutlinedRed && notTalking) 
+        if (isOutlinedRed && notTalking && buttonManager.clickedOnSuspect && buttonManager.canShowOutlineOfEvidiences) 
         {
             StartCoroutine(CloseTheOutlineByClickingAgain());
         }
@@ -134,14 +136,20 @@ public class SuspectOutline : MonoBehaviour
 
     private void CloseTheOutline()
     {
+        Debug.Log("Close The Outline Çalýþtý!");
         redOutlineRenderer.enabled = false;
+        redOutlineRenderer2.enabled = false;
+        redOutlineRenderer3.enabled = false;
         notTalking = false;
         buttonManager.canCloseTheOutline = false;
     }
 
     private IEnumerator CloseTheOutlineByClickingAgain()
     {
+        print("tekrar tiklayip kapandi kirmizi!");
         redOutlineRenderer.enabled = false;
+        redOutlineRenderer2.enabled = false;
+        redOutlineRenderer3.enabled = false;
         notTalking = false;
         buttonManager.canCloseTheOutline = false;
         buttonManager.clickedOnSuspect = false;
@@ -158,4 +166,5 @@ public class SuspectOutline : MonoBehaviour
         buttonManager.canCloseTheRed = false;
 
     }
+
 }

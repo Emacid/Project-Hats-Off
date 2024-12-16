@@ -223,5 +223,10 @@ public class ButtonManager : MonoBehaviour
         startedConversation = true;
         CanTriggerTalkAgain = false;
         canShowOutlineOfEvidiences = false;
+
+        for (int i = 0; i < suspectScripts.Length; i++)
+        {
+            suspectScripts[i].notTalking = false;
+        }
     }
 }
