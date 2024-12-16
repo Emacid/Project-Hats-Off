@@ -12,6 +12,8 @@ public class SuspectOutline : MonoBehaviour
     public bool canInteract = true;
     public bool notTalking = true;
 
+    public bool isOutlinedRed = false;
+
     public Asistant asistantMechanic;
 
     private int objectCount = 0; // Object etiketine sahip nesnelerin sayýsý
@@ -42,6 +44,11 @@ public class SuspectOutline : MonoBehaviour
 
     void Update()
     {
+        if (buttonManager.canCloseTheRed) 
+        {
+            StartCoroutine(CloseTheRed());
+        }
+        
         if (Input.GetKeyUp(KeyCode.F4))
         {
             redOutlineRenderer.enabled = false;
@@ -76,6 +83,11 @@ public class SuspectOutline : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (isOutlinedRed && notTalking) 
+        {
+            StartCoroutine(CloseTheOutlineByClickingAgain());
+        }
+        
         if (canInteract && notTalking && asistantMechanic.isClickedOnAsistant)
         {
             asistantMechanic.SpawnAsistantText();
@@ -86,6 +98,7 @@ public class SuspectOutline : MonoBehaviour
             redOutlineRenderer.enabled = true;
             buttonManager.clickedOnSuspect = true;
             buttonManager.canShowOutlineOfEvidiences = true;
+            isOutlinedRed = true;
         }
     }
 
@@ -126,4 +139,23 @@ public class SuspectOutline : MonoBehaviour
         buttonManager.canCloseTheOutline = false;
     }
 
+    private IEnumerator CloseTheOutlineByClickingAgain()
+    {
+        redOutlineRenderer.enabled = false;
+        notTalking = false;
+        buttonManager.canCloseTheOutline = false;
+        buttonManager.clickedOnSuspect = false;
+        buttonManager.canShowOutlineOfEvidiences = false;
+        isOutlinedRed = false;
+        yield return new WaitForSeconds(0.5f);
+        notTalking = true;
+    }
+
+    private IEnumerator CloseTheRed()
+    {
+        isOutlinedRed = false;
+        yield return new WaitForSeconds(0.05f);
+        buttonManager.canCloseTheRed = false;
+
+    }
 }

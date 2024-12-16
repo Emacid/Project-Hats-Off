@@ -50,7 +50,9 @@ public class TextAnim : MonoBehaviour
                 ButtonManager.startedConversation = false;
                 ButtonManager.CanTriggerTalkAgain = true;
                 ButtonManager.clickedOnSuspect = false;
-                }
+                ButtonManager.canCloseTheRed = true;
+                StartCoroutine(DestroyTheText(3.5f));
+            }
             }
         else if(asistantMechanic.isClickedOnAsistant)
         {
@@ -65,5 +67,11 @@ public class TextAnim : MonoBehaviour
         {
             texts[triggerNumber].SetActive(true);
         }
+    }
+
+    private IEnumerator DestroyTheText(float destroytime)
+    {
+        yield return new WaitForSeconds(destroytime);
+        Destroy(transform.parent.gameObject);
     }
 }

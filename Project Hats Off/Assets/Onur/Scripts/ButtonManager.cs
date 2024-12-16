@@ -15,6 +15,8 @@ public class ButtonManager : MonoBehaviour
 
     public int suspectInMiddle = 1;
 
+    public bool canCloseTheRed = false;
+
     public SuspectOutline[] suspectScripts;
 
     private bool canTriggerTalkAgain;
@@ -92,7 +94,7 @@ public class ButtonManager : MonoBehaviour
                             InstantiateTexts(texts[0]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        if (obj.name == "evidence_hover" && suspectScripts[0].notTalking && suspectInMiddle == 1)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[3]);
@@ -153,37 +155,43 @@ public class ButtonManager : MonoBehaviour
                             InstantiateTexts(texts[15]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover2" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        if (obj.name == "evidence_hover2" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[4]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover3" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        else if (obj.name == "evidence_hover2" && suspectScripts[1].notTalking && suspectInMiddle == 2) 
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[15]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        if (obj.name == "evidence_hover3" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[8]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover4" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        if (obj.name == "evidence_hover4" && suspectScripts[0].notTalking && suspectInMiddle == 1)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[2]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover5" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        if (obj.name == "evidence_hover5" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[5]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover6" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        if (obj.name == "evidence_hover6" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[7]);
                             obj.gameObject.SetActive(false);
                         }
-                        if (obj.name == "evidence_hover7" && suspectScripts[0].notTalking) // && suspectInMiddle == 1
+                        if (obj.name == "evidence_hover7" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[6]);
