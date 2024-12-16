@@ -8,6 +8,7 @@ public class SuspectOutline : MonoBehaviour
     public SpriteRenderer redOutlineRenderer;
     public SpriteRenderer redOutlineRenderer2;
     public SpriteRenderer redOutlineRenderer3;
+    public SpriteRenderer redOutlineRenderer4;
 
     public ButtonManager buttonManager;
 
@@ -140,8 +141,10 @@ public class SuspectOutline : MonoBehaviour
         redOutlineRenderer.enabled = false;
         redOutlineRenderer2.enabled = false;
         redOutlineRenderer3.enabled = false;
+        redOutlineRenderer4.enabled = false;
         notTalking = false;
         buttonManager.canCloseTheOutline = false;
+        redOutlineRenderer.enabled = false;
     }
 
     private IEnumerator CloseTheOutlineByClickingAgain()
@@ -150,6 +153,7 @@ public class SuspectOutline : MonoBehaviour
         redOutlineRenderer.enabled = false;
         redOutlineRenderer2.enabled = false;
         redOutlineRenderer3.enabled = false;
+        redOutlineRenderer4.enabled = false;
         notTalking = false;
         buttonManager.canCloseTheOutline = false;
         buttonManager.clickedOnSuspect = false;
