@@ -100,6 +100,12 @@ public class ButtonManager : MonoBehaviour
                             InstantiateTexts(texts[3]);
                             obj.gameObject.SetActive(false);
                         }
+                        else if (obj.name == "evidence_hover" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[16]);
+                            obj.gameObject.SetActive(false);
+                        }
                         if (obj.name == "AsistantEvidienceHover")
                         {
                             Debug.Log("Asistan Tetiklendi!!!");
@@ -179,10 +185,22 @@ public class ButtonManager : MonoBehaviour
                             InstantiateTexts(texts[2]);
                             obj.gameObject.SetActive(false);
                         }
+                        else if (obj.name == "evidence_hover4" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[17]);
+                            obj.gameObject.SetActive(false);
+                        }
                         if (obj.name == "evidence_hover5" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[5]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "evidence_hover5" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[18]);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "evidence_hover6" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
@@ -195,6 +213,12 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[6]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "evidence_hover7" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[19]);
                             obj.gameObject.SetActive(false);
                         }
                     }
