@@ -9,6 +9,8 @@ TagManager:
   - PhotoZone
   - Object
   - Photo
+  - BugFix
+  - SquareSprite
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - PhotographInTable
   - ObjectInTableColliding
   - PhotographInTableColliding
-  - 
+  - Suspect
   - 
   - 
   - 

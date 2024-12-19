@@ -52,7 +52,7 @@ public class DraggableObject : MonoBehaviour
     {
         Vector3 screenPos = cam.WorldToViewportPoint(transform.position);
 
-        // Eðer ekranýn dýþýnda `outOfBoundsOffset` mesafesinde ise sýfýr konumuna döner
+        // Eðer ekranýn dýþýnda outOfBoundsOffset mesafesinde ise sýfýr konumuna döner
         if (screenPos.x < -outOfBoundsOffset || screenPos.x > 1 + outOfBoundsOffset ||
             screenPos.y < -outOfBoundsOffset || screenPos.y > 1 + outOfBoundsOffset)
         {

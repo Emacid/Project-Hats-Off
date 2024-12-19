@@ -10,6 +10,8 @@ public class SuspectOutline : MonoBehaviour
     public SpriteRenderer redOutlineRenderer3;
     public SpriteRenderer redOutlineRenderer4;
 
+    private BoxCollider2D boxCollider2D;
+
     public ButtonManager buttonManager;
 
     public bool canInteract = true;
@@ -24,6 +26,8 @@ public class SuspectOutline : MonoBehaviour
 
     void Start()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+
         if (buttonManager != null)
         {
             buttonManager.OnCanTriggerTalkAgainChanged += HandleCanTriggerTalkAgainChanged;
@@ -37,6 +41,7 @@ public class SuspectOutline : MonoBehaviour
             buttonManager.OnCanTriggerTalkAgainChanged -= HandleCanTriggerTalkAgainChanged;
         }
     }
+
     private void HandleCanTriggerTalkAgainChanged(bool value)
     {
         if (value)
@@ -47,14 +52,9 @@ public class SuspectOutline : MonoBehaviour
 
     void Update()
     {
-        if (buttonManager.canCloseTheRed) 
+        if (buttonManager.canCloseTheRed)
         {
             StartCoroutine(CloseTheRed());
-        }
-        
-        if (Input.GetKeyUp(KeyCode.F4))
-        {
-            redOutlineRenderer.enabled = false;
         }
 
         if (buttonManager.canCloseTheOutline)
@@ -70,7 +70,7 @@ public class SuspectOutline : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (canInteract )
+        if (canInteract)
         {
             grayOutlineRenderer.enabled = true;
         }
@@ -86,19 +86,24 @@ public class SuspectOutline : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (isOutlinedRed && notTalking && buttonManager.clickedOnSuspect && buttonManager.canShowOutlineOfEvidiences) 
+        if (isOutlinedRed && notTalking && buttonManager.clickedOnSuspect && buttonManager.canShowOutlineOfEvidiences)
         {
+            // Kýrmýzý outline'ý tekrar týklayýnca kapatma
             StartCoroutine(CloseTheOutlineByClickingAgain());
         }
-        
-        if (canInteract && notTalking && asistantMechanic.isClickedOnAsistant)
+        else if (canInteract && notTalking && asistantMechanic.isClickedOnAsistant)
         {
+            // Asistant mekanizmasý ile etkileþim
             asistantMechanic.SpawnAsistantText();
         }
-
-        else if (canInteract && notTalking )
+        else if (canInteract && notTalking)
         {
+            // Kýrmýzý outline'ý aktif et
             redOutlineRenderer.enabled = true;
+            redOutlineRenderer2.enabled = true;
+            redOutlineRenderer3.enabled = true;
+            redOutlineRenderer4.enabled = true;
+
             buttonManager.clickedOnSuspect = true;
             buttonManager.canShowOutlineOfEvidiences = true;
             isOutlinedRed = true;
@@ -144,7 +149,6 @@ public class SuspectOutline : MonoBehaviour
         redOutlineRenderer4.enabled = false;
         notTalking = false;
         buttonManager.canCloseTheOutline = false;
-        redOutlineRenderer.enabled = false;
     }
 
     private IEnumerator CloseTheOutlineByClickingAgain()
@@ -168,7 +172,5 @@ public class SuspectOutline : MonoBehaviour
         isOutlinedRed = false;
         yield return new WaitForSeconds(0.05f);
         buttonManager.canCloseTheRed = false;
-
     }
-
 }
