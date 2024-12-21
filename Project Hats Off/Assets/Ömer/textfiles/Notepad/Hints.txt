@@ -1,6 +1,21 @@
-hint 1
-hint 2
-hint 3
-hint 4
-hint 5
-hint 6
+evidence 1 sus1: He mentioned cheating on his wife
+evidence 1 sus2: He thinks his wife found out he was cheating on her		
+evidence 1 sus3: She confirmed that it was her.
+evidence 2 sus1: He said he didn't know anything about it. 
+evidence 2 sus2: He saw him killed with it 
+evidence 2 sus3: She said she didn't know anything about it.
+evidence 3 sus1: He talked about brand.
+evidence 3 sus2: He said He didn't break the bottle.  
+evidence 3 sus3: She confirmed that she threw the bottle.
+evidence 4 sus1: He said he didn't remember it was broken.
+evidence 4 sus2: He tried to reach him about it.
+evidence 4 sus3: She said it wasn't broken when she left home.
+evidence 5 sus1: He said he didn't know anything about it.	 
+evidence 5 sus2: He said he didn't know anything about it.
+evidence 5 sus3: She said she didn't know anything about it.
+evidence 6 sus1: He said it belongs to the workers in the hotel.
+evidence 6 sus2 
+evidence 6 sus3
+evidence 7 sus1
+evidence 7 sus2 
+evidence 7 sus3

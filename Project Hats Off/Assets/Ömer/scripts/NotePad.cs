@@ -74,7 +74,7 @@ public class NotePad : MonoBehaviour
             if (hint != null)
             {   
                 hint.SetActive(true);
-                TextMeshProUGUI hintsText = hint.GetComponentInChildren<TextMeshProUGUI>();
+                TextMeshPro hintsText = hint.GetComponentInChildren<TextMeshPro>();
 
                 if(hintsText != null)
                 {
