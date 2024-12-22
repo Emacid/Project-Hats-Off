@@ -367,6 +367,78 @@ public class ButtonManager : MonoBehaviour
                             InstantiateTexts(texts[23]);
                             obj.gameObject.SetActive(false);
                         }
+                        if (obj.name == "AnimatedCircle10" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[41]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle10" && suspectScripts[1].notTalking && suspectInMiddle == 2) 
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[42]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle10" && suspectScripts[2].notTalking && suspectInMiddle == 3) 
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[43]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        if (obj.name == "AnimatedCircle11" && suspectScripts[0].notTalking && suspectInMiddle == 1)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[44]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle11" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[45]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle11" && suspectScripts[2].notTalking && suspectInMiddle == 3)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[46]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        if (obj.name == "AnimatedCircle12" && suspectScripts[0].notTalking && suspectInMiddle == 1)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[47]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle12" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[48]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle12" && suspectScripts[2].notTalking && suspectInMiddle == 3)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[49]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        if (obj.name == "AnimatedCircle13" && suspectScripts[0].notTalking && suspectInMiddle == 1)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[50]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle13" && suspectScripts[1].notTalking && suspectInMiddle == 2)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[51]);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AnimatedCircle13" && suspectScripts[2].notTalking && suspectInMiddle == 3)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[52]);
+                            obj.gameObject.SetActive(false);
+                        }
                     }
                 }
             }
