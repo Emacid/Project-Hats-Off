@@ -11,6 +11,7 @@ TagManager:
   - Photo
   - BugFix
   - SquareSprite
+  - ColliderCheck
   layers:
   - Default
   - TransparentFX

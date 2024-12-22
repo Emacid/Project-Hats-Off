@@ -66,25 +66,39 @@ public class SuspectOutline : MonoBehaviour
         {
             notTalking = true;
         }
-    }
 
-    private void OnMouseOver()
-    {
-        if (canInteract)
+        HandleMouseInteractions();
+
+        if(Input.GetKeyDown(KeyCode.C)) 
         {
-            grayOutlineRenderer.enabled = true;
+            boxCollider2D.enabled = !boxCollider2D.enabled;
         }
     }
 
-    private void OnMouseExit()
+    private void HandleMouseInteractions()
     {
-        if (canInteract)
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+        if (hit.collider != null && hit.collider == boxCollider2D)
+        {
+            if (canInteract)
+            {
+                grayOutlineRenderer.enabled = true;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                HandleMouseClick();
+            }
+        }
+        else
         {
             grayOutlineRenderer.enabled = false;
         }
     }
 
-    private void OnMouseDown()
+    private void HandleMouseClick()
     {
         if (isOutlinedRed && notTalking && buttonManager.clickedOnSuspect && buttonManager.canShowOutlineOfEvidiences)
         {
