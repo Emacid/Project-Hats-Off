@@ -12,6 +12,7 @@ TagManager:
   - BugFix
   - SquareSprite
   - ColliderCheck
+  - LetterZone
   layers:
   - Default
   - TransparentFX

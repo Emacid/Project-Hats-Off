@@ -8,6 +8,8 @@ public class SwapPos : MonoBehaviour
     public bool inTheZone = false;
     public bool inTheSecondZone = false;
     public bool folderUp = true;
+    public bool inLetterZone = false;
+    public bool isObjectLetter = false;
 
     public Animator animator;
     public Animator FolderPageAnimator;
@@ -15,6 +17,8 @@ public class SwapPos : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private BoxCollider2D boxCollider2D;
     public BoxCollider2D tableCollider;
+
+    public BoxCollider2D[] triggeringColliders;
 
     public GameObject draggableObject;
     public GameObject folderObject;
@@ -54,6 +58,11 @@ public class SwapPos : MonoBehaviour
             Debug.Log("TakeBackZone!");
             inTheSecondZone = true;
         }
+
+        if (other.CompareTag("LetterZone"))
+        {
+            inLetterZone = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -65,6 +74,10 @@ public class SwapPos : MonoBehaviour
         if (other.CompareTag("TakeBackZone"))
         {
             inTheSecondZone = false;
+        }
+        if (other.CompareTag("LetterZone"))
+        {
+            inLetterZone = false;
         }
     }
 
@@ -97,14 +110,21 @@ public class SwapPos : MonoBehaviour
 
     private void OnMouseUp()
     {
+
         if (inTheZone && folderUp)
         {
             Swap();
+            //StartCoroutine(TriggeringCollidersWhileSwapping());
         }
-
-        if (!inTheZone && !folderUp && inTheSecondZone)
+        if (isObjectLetter && inLetterZone && !folderUp)
         {
             SwapBack();
+            //StartCoroutine(TriggeringCollidersWhileSwapping());
+        }
+        else if (!isObjectLetter && !inTheZone && !folderUp && inTheSecondZone)
+        {
+            SwapBack();
+            //StartCoroutine(TriggeringCollidersWhileSwapping());
         }
     }
 
@@ -195,4 +215,18 @@ public class SwapPos : MonoBehaviour
         //boxCollider2D.enabled = true;
         //boxCollider2D.isTrigger = true;
     }
+
+    private IEnumerator TriggeringCollidersWhileSwapping()
+    {
+        yield return new WaitForSeconds(1.0f);
+        triggeringColliders[0].enabled = false;
+        triggeringColliders[1].enabled = false;
+        triggeringColliders[2].enabled = false;
+        yield return new WaitForSeconds(1.1f);
+        triggeringColliders[0].enabled = true;
+        triggeringColliders[1].enabled = true;
+        triggeringColliders[2].enabled = true;
+
+    }
+
 }
