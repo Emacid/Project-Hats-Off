@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Onur/Credits.unity
     guid: aab16c85e73b57a46ba75d2d09af35c0
+  - enabled: 1
+    path: "Assets/\xD6mer/StartMenu.unity"
+    guid: 9a9fa7268c40a8f4caf71610ecad5cd2
+  - enabled: 1
+    path: "Assets/\xD6mer/deneme.unity"
+    guid: c56d0a072687d7b40a49cfc8ee25da80
   m_configObjects: {}

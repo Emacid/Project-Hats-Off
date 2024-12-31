@@ -13,9 +13,29 @@ evidence 4 sus3: She said it wasn't broken when she left home.
 evidence 5 sus1: He said he didn't know anything about it.	 
 evidence 5 sus2: He said he didn't know anything about it.
 evidence 5 sus3: She said she didn't know anything about it.
-evidence 6 sus1: He said it belongs to the workers in the hotel.
-evidence 6 sus2 
-evidence 6 sus3
-evidence 7 sus1
-evidence 7 sus2 
-evidence 7 sus3
+evidence 6 sus1: He said it belongs to the staff in the hotel.
+evidence 6 sus2: He said it is used by all employees who work for his company.
+evidence 6 sus3: She said she saw it being used by employees at her husband's company.
+evidence 7 sus1: He said he had never seen it before.
+evidence 7 sus2: He confirmed he had written it himself to be promoted.
+evidence 7 sus3: She said she didn't know anything about it.
+victim name sus1: He respects work and party discipline but not his relationship with his wife.  
+victim name sus2: He thinks he is better than him at the job.
+victim name sus3: She was upset about his death but angry that he had cheated.
+victim age sus1: He said he was over 35  
+victim age sus2: He said he was between 40 and 45
+victim age sus3: She said she has been married for 8 years approximately.
+victim gender sus1: He refused it angrily.
+victim gender sus2: He refused it angrily.
+victim gender sus3: She refused it angrily.
+victim profession sus1: He said he was the manager of the party's economic affairs.
+victim profession sus2: He said he has own company.
+victim profession sus3: She said he has own bussines.
+
+
+
+
+
+
+
+
