@@ -120,11 +120,14 @@ public class SwapPos : MonoBehaviour
         {
             SwapBack();
             //StartCoroutine(TriggeringCollidersWhileSwapping());
+            StartCoroutine(BoxColliderFix());
+            
         }
         else if (!isObjectLetter && !inTheZone && !folderUp && inTheSecondZone)
         {
             SwapBack();
             //StartCoroutine(TriggeringCollidersWhileSwapping());
+            StartCoroutine(BoxColliderFix());
         }
     }
 
@@ -227,6 +230,15 @@ public class SwapPos : MonoBehaviour
         triggeringColliders[1].enabled = true;
         triggeringColliders[2].enabled = true;
 
+    }
+
+    private IEnumerator BoxColliderFix()
+    {
+        
+        yield return new WaitForSeconds(0.5f);
+        boxCollider2D.enabled = false;
+        yield return new WaitForSeconds(1.1f);
+        boxCollider2D.enabled = true;
     }
 
 }
