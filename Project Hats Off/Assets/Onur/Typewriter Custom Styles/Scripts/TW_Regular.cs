@@ -13,6 +13,7 @@ public class TW_Regular_Editor : Editor
 {
     private static string[] PointerSymbols = { "None", "<", "_", "|", ">" };
     private TW_Regular TW_RegularScript;
+    
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class TW_Regular_Editor : Editor
 
     private void MakePopup(SerializedObject obj)
     {
-        TW_RegularScript.pointer = EditorGUILayout.Popup("Pointer symbol",TW_RegularScript.pointer, PointerSymbols, EditorStyles.popup);
+        TW_RegularScript.pointer = EditorGUILayout.Popup("Pointer symbol", TW_RegularScript.pointer, PointerSymbols, EditorStyles.popup);
     }
 
     public override void OnInspectorGUI()
@@ -33,12 +34,13 @@ public class TW_Regular_Editor : Editor
 }
 #endif
 
-public class TW_Regular : MonoBehaviour {
+public class TW_Regular : MonoBehaviour
+{
 
     public bool LaunchOnStart = true;
     public int timeOut = 1;
     [HideInInspector]
-    public int pointer=0;
+    public int pointer = 0;
     public string ORIGINAL_TEXT;
 
     private float time = 0f;
@@ -47,7 +49,10 @@ public class TW_Regular : MonoBehaviour {
     private List<int> n_l_list;
     private static string[] PointerSymbols = { "None", "<", "_", "|", ">" };
 
-    void Start () {
+    private float typingSpeed = 0.0115f;
+
+    void Start()
+    {
         ORIGINAL_TEXT = gameObject.GetComponent<TMP_Text>().text;
         gameObject.GetComponent<TMP_Text>().text = "";
         if (LaunchOnStart)
@@ -55,13 +60,15 @@ public class TW_Regular : MonoBehaviour {
             StartTypewriter();
         }
     }
-	
-	void Update () {
-        if (start == true){
+
+    void Update()
+    {
+        if (start == true)
+        {
             NewLineCheck(ORIGINAL_TEXT);
         }
 
-        if(Input.GetKeyUp(KeyCode.F6)) 
+        if (Input.GetKeyUp(KeyCode.F6))
         {
             StartTypewriter();
         }
@@ -73,17 +80,20 @@ public class TW_Regular : MonoBehaviour {
         time = 0f;
     }
 
-    public void SkipTypewriter(){
+    public void SkipTypewriter()
+    {
         сharIndex = ORIGINAL_TEXT.Length - 1;
     }
 
     private void NewLineCheck(string S)
     {
-        if (S.Contains("\n")){
+        if (S.Contains("\n"))
+        {
             StartCoroutine(MakeTypewriterTextWithNewLine(S, GetPointerSymbol(), MakeList(S)));
         }
-        else{
-            StartCoroutine(MakeTypewriterText(S,GetPointerSymbol()));
+        else
+        {
+            StartCoroutine(MakeTypewriterText(S, GetPointerSymbol()));
         }
     }
 
@@ -96,8 +106,8 @@ public class TW_Regular : MonoBehaviour {
             string TEXT = ORIGINAL.Substring(0, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
             gameObject.GetComponent<TMP_Text>().text = TEXT;
-            time += 1;
-            yield return new WaitForSeconds(0.01f);
+            time += Time.deltaTime;  // Zamanı deltaTime ile arttırıyoruz
+            yield return new WaitForSeconds(typingSpeed);  // typingSpeed ile bekleme
             CharIndexPlus();
             start = true;
         }
@@ -113,12 +123,13 @@ public class TW_Regular : MonoBehaviour {
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
             TEXT = InsertNewLine(TEXT, List);
             gameObject.GetComponent<TMP_Text>().text = TEXT;
-            time += 1f;
-            yield return new WaitForSeconds(0.01f);
+            time += Time.deltaTime;  // Zamanı deltaTime ile arttırıyoruz
+            yield return new WaitForSeconds(typingSpeed);  // typingSpeed ile bekleme
             CharIndexPlus();
             start = true;
         }
     }
+
 
     private List<int> MakeList(string S)
     {
@@ -147,21 +158,24 @@ public class TW_Regular : MonoBehaviour {
 
     private string GetPointerSymbol()
     {
-        if (pointer == 0){
+        if (pointer == 0)
+        {
             return "";
         }
-        else{
+        else
+        {
             return PointerSymbols[pointer];
         }
     }
 
     private void CharIndexPlus()
     {
-        if (time == timeOut)
+        if (time >= typingSpeed)  // typingSpeed'e göre zaman kontrolü
         {
             time = 0f;
             сharIndex += 1;
         }
     }
+
 
 }

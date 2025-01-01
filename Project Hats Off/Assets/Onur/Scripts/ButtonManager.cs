@@ -18,6 +18,7 @@ public class ButtonManager : MonoBehaviour
     public bool canCloseTheRed = false;
 
     public SuspectOutline[] suspectScripts;
+    public NotePad[] notepadPages;
 
     private bool canTriggerTalkAgain;
     public bool CanTriggerTalkAgain
@@ -115,7 +116,50 @@ public class ButtonManager : MonoBehaviour
                         if (obj.name == "AsistantEvidienceHover")
                         {
                             Debug.Log("Asistan Tetiklendi!!!");
-                            asistantMechanic.SpawnAsistantText();
+                            asistantMechanic.SpawnAsistantText(0);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover2")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(1);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover3")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(2);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover4")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(3);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover5")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(4);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover6")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(5);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover7")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(6);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "AsistantEvidienceHover8")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(7);
+                            obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "AnimatedCircle2" && suspectScripts[0].notTalking && suspectInMiddle == 1) //&& suspectInMiddle == 1
                         {
@@ -275,12 +319,14 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[4]);
+                            FillNotepad(0, 0);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover2" && suspectScripts[1].notTalking && suspectInMiddle == 2) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[15]);
+                            FillNotepad(1, 0);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover2" && suspectScripts[2].notTalking && suspectInMiddle == 3)
@@ -1027,6 +1073,12 @@ public class ButtonManager : MonoBehaviour
                             InstantiateTexts(texts[150]);
                             obj.gameObject.SetActive(false);
                         }
+                        else if (obj.name == "AnimatedCircle46" && suspectScripts[2].notTalking && suspectInMiddle == 3)
+                        {
+                            Debug.Log("Text gelmesi lazým!");
+                            InstantiateTexts(texts[151]);
+                            obj.gameObject.SetActive(false);
+                        }
                     }
                 }
             }
@@ -1059,4 +1111,10 @@ public class ButtonManager : MonoBehaviour
             suspectScripts[i].notTalking = false;
         }
     }
+
+    private void FillNotepad(int notepadNumber, int hintNumber) 
+    {
+        notepadPages[notepadNumber].HintLoad(hintNumber);
+    }
+
 }

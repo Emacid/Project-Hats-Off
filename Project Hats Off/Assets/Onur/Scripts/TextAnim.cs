@@ -56,7 +56,7 @@ public class TextAnim : MonoBehaviour
             }
         else if(asistantMechanic.isClickedOnAsistant)
         {
-            asistantMechanic.SpawnAsistantText();
+            //asistantMechanic.SpawnAsistantText();
         }
     }
 

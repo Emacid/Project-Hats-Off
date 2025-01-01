@@ -1,32 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Button bileþeni için gerekli
-using UnityEngine.EventSystems; // EventSystem kullanmak için gerekli
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Asistant : MonoBehaviour
 {
     public bool isClickedOnAsistant = false;
 
     public ButtonManager ButtonManager;
-
-    public GameObject asistantTextForMidterm;
+    //
+    public GameObject[] asistantTextForMidterm;
     public Transform ParentForSpawn;
 
     public bool triggerToClosingTheOutline = false;
 
-    public Button assistantButton; // Butonu referans olarak ekliyoruz
+    public Button assistantButton;
 
-    // Start is called before the first frame update
+    private bool isManuallySelected = false; // Manuel seçim durumu
+
     void Start()
     {
-        // Baþlangýçta butonun rengini veya durumunu ayarlayabiliriz.
         DeselectButton(); // Baþlangýçta buton deselect edilir.
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Buton seçiliyken baþka bir yere týklanýrsa tekrar seçili hale getir
+        if (isClickedOnAsistant && !EventSystem.current.currentSelectedGameObject)
+        {
+            // EventSystem'de seçili obje yoksa ve buton aktif durumdaysa
+            SelectButton();
+        }
     }
 
     public void ClickedOnAsistant()
@@ -36,35 +41,35 @@ public class Asistant : MonoBehaviour
             // Eðer buton zaten seçiliyse, unselect iþlemi yapýlýr
             isClickedOnAsistant = false;
             ButtonManager.canShowOutlineOfEvidiences = false;
-            triggerToClosingTheOutline = false; // Unselect sýrasýnda outline'ý kapatma iþlemi
-            DeselectButton(); // Butonu deselect et
+            triggerToClosingTheOutline = false;
+            DeselectButton();
         }
         else
         {
             // Buton seçili deðilse, select iþlemi yapýlýr
             isClickedOnAsistant = true;
             ButtonManager.canShowOutlineOfEvidiences = true;
-            SelectButton(); // Butonu select et
+            SelectButton();
         }
     }
 
-    public void SpawnAsistantText()
+    public void SpawnAsistantText(int textNumber)
     {
-        Instantiate(asistantTextForMidterm, ParentForSpawn);
+        Instantiate(asistantTextForMidterm[textNumber], ParentForSpawn);
         isClickedOnAsistant = false;
         triggerToClosingTheOutline = true;
-        DeselectButton(); // Spawn sonrasý butonu deselect et
+        DeselectButton();
     }
 
     private void SelectButton()
     {
-        // Butonu seçili yap
+        isManuallySelected = true; // Manuel olarak seçildiðini iþaretle
         EventSystem.current.SetSelectedGameObject(assistantButton.gameObject);
     }
 
     private void DeselectButton()
     {
-        // Butonu deselect et
+        isManuallySelected = false; // Manuel seçim durumunu sýfýrla
         EventSystem.current.SetSelectedGameObject(null);
     }
 }

@@ -108,7 +108,7 @@ public class SuspectOutline : MonoBehaviour
         else if (canInteract && notTalking && asistantMechanic.isClickedOnAsistant)
         {
             // Asistant mekanizmasý ile etkileþim
-            asistantMechanic.SpawnAsistantText();
+            //asistantMechanic.SpawnAsistantText();
         }
         else if (canInteract && notTalking)
         {
