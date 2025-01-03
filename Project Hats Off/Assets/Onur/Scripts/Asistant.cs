@@ -17,6 +17,8 @@ public class Asistant : MonoBehaviour
 
     public Button assistantButton;
 
+    public SuspectOutline[] suspectOutlines;
+
     private bool isManuallySelected = false; // Manuel seçim durumu
 
     void Start()
@@ -46,10 +48,22 @@ public class Asistant : MonoBehaviour
         }
         else
         {
-            // Buton seçili deðilse, select iþlemi yapýlýr
-            isClickedOnAsistant = true;
+            if (ButtonManager.clickedOnSuspect)
+            {
+                
+                foreach (var outline in suspectOutlines)
+                {
+                    outline.CloseTheOutlineByClickingAgainn();
+                    //outline.isOutlinedRed = false;
+                }
+            }
+            
+            {
+                // Buton seçili deðilse, select iþlemi yapýlýr
+                isClickedOnAsistant = true;
             ButtonManager.canShowOutlineOfEvidiences = true;
             SelectButton();
+            }
         }
     }
 

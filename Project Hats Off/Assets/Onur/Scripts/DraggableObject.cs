@@ -11,7 +11,8 @@ public class DraggableObject : MonoBehaviour
     public GameObject draggableObject;
     public GameObject folderDraggableObject;
     public SwapPos swapPosScript;
-
+    public GameObject outlinedObjectVariant;
+    private Asistant asistantScript;
     public bool changeOffset = false;
 
     public float rightOffset = 1.55f;
@@ -33,6 +34,7 @@ public class DraggableObject : MonoBehaviour
         minBounds = new Vector2(bottomLeft.x + leftOffset, bottomLeft.y + bottomOffset);
         maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
         originalPos = new Vector2(0, 0);
+        asistantScript = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
     }
 
     private void Update()
@@ -99,6 +101,19 @@ public class DraggableObject : MonoBehaviour
     {
         Cursor.visible = true;
     }
+
+    private void OnMouseOver()
+    {
+        if (asistantScript.isClickedOnAsistant) 
+        {
+            outlinedObjectVariant.gameObject.SetActive(true);
+        }
+    }
+    private void OnMouseExit()
+    {
+        outlinedObjectVariant.gameObject.SetActive(false);
+    }
+
     public void PageOffset()
     {
         Vector3 bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z));

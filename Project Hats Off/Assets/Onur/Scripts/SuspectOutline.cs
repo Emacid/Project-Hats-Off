@@ -154,7 +154,7 @@ public class SuspectOutline : MonoBehaviour
         canInteract = (objectCount == 0 && photoCount == 0);
     }
 
-    private void CloseTheOutline()
+    public void CloseTheOutline()
     {
         Debug.Log("Close The Outline Çalýþtý!");
         redOutlineRenderer.enabled = false;
@@ -165,7 +165,7 @@ public class SuspectOutline : MonoBehaviour
         buttonManager.canCloseTheOutline = false;
     }
 
-    private IEnumerator CloseTheOutlineByClickingAgain()
+    public IEnumerator CloseTheOutlineByClickingAgain()
     {
         print("tekrar tiklayip kapandi kirmizi!");
         redOutlineRenderer.enabled = false;
@@ -187,4 +187,10 @@ public class SuspectOutline : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
         buttonManager.canCloseTheRed = false;
     }
+
+    public void CloseTheOutlineByClickingAgainn() 
+    {
+        StartCoroutine(CloseTheOutlineByClickingAgain());
+    }
+
 }

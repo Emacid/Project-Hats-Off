@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 1449886522006635247}
   - component: {fileID: 1405402036529231061}
   - component: {fileID: 3304757140451915314}
+  - component: {fileID: 7531969897698819524}
   m_Layer: 5
   m_Name: AsistantForMidterm
   m_TagString: Untagged
@@ -276,3 +277,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7531969897698819524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534721564537420464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24f49a317b21764faf72b7b0c6ab7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

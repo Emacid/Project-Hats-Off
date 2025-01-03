@@ -17,6 +17,7 @@ public class SuspectManager : MonoBehaviour
 
     public static SuspectManager instance;
     public ButtonManager buttonManager;
+    public Asistant asistantScript;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class SuspectManager : MonoBehaviour
     }
     private void Start()
     {
+        asistantScript = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
         ShowSuspect(0);
     }
     public void OnButtonPressed(int buttonIndex)
@@ -38,13 +40,31 @@ public class SuspectManager : MonoBehaviour
         switch (buttonIndex)
         {
             case 0 when !isPressed:
+                if (buttonManager.startedConversation)
+                {
+                    asistantScript.SpawnAsistantText(0);
+                    break;
+                }
+                else
                 ShowSuspect(0);
                 break;
             case 1 when !isPressed:
-                ShowSuspect(1);
+                if (buttonManager.startedConversation)
+                {
+                    asistantScript.SpawnAsistantText(0);
+                    break;
+                }
+                else
+                    ShowSuspect(1);
                 break;
             case 2 when !isPressed:
-                ShowSuspect(2);
+                if (buttonManager.startedConversation)
+                {
+                    asistantScript.SpawnAsistantText(0);
+                    break;
+                }
+                else
+                    ShowSuspect(2);
                 break;
 
         }
