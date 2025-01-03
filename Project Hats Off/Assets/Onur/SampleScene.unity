@@ -21646,6 +21646,7 @@ MonoBehaviour:
   rightPosition: {fileID: 1794570693}
   moveSpeed: 0.5
   isPressed: 0
+  parentObject: {fileID: 22494023}
   buttonManager: {fileID: 7857104}
   asistantScript: {fileID: 1800608544}
 --- !u!4 &1141447566

@@ -14,10 +14,12 @@ public class SuspectManager : MonoBehaviour
     private GameObject currentSuspect;  // Þu an ortada olan þüpheli
 
     public bool isPressed;
+    public GameObject parentObject;
 
     public static SuspectManager instance;
     public ButtonManager buttonManager;
     public Asistant asistantScript;
+    private SuspectOutline[] suspectOutlines;
 
     private void Awake()
     {
@@ -33,10 +35,37 @@ public class SuspectManager : MonoBehaviour
     private void Start()
     {
         asistantScript = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
+
+        suspectOutlines = new SuspectOutline[suspects.Length];
+        for (int i = 0; i < suspects.Length; i++)
+        {
+            // Suspect GameObject'in içindeki SuspectOutline bileþenini al
+            suspectOutlines[i] = suspects[i].GetComponent<SuspectOutline>();
+            if (suspectOutlines[i] == null)
+            {
+                Debug.LogWarning($"Suspect {suspects[i].name} nesnesinde SuspectOutline bileþeni yok!");
+            }
+        }
+
         ShowSuspect(0);
     }
     public void OnButtonPressed(int buttonIndex)
     {
+        if (!buttonManager.startedConversation) 
+        { 
+            foreach (var outline in suspectOutlines)
+            {
+                outline.CloseTheOutlineByClickingAgainn();
+            }
+        }
+        else if (buttonManager.startedConversation) 
+        {
+            foreach (var outline in suspectOutlines)
+            {
+                outline.CloseTheOutlineByClickingAgainn();
+                TriggerTextAnimScripts();
+            }
+        }
         switch (buttonIndex)
         {
             case 0 when !isPressed:
@@ -96,6 +125,19 @@ public class SuspectManager : MonoBehaviour
             isPressed = false;
         }
     }
+
+    public void TriggerTextAnimScripts()
+    {
+        // Parent objenin altýndaki tüm child objeleri kontrol et.
+        TextAnim[] textAnimScripts = parentObject.GetComponentsInChildren<TextAnim>();
+
+        // Her TextAnim scripti için TextsVanish fonksiyonunu çaðýr.
+        foreach (TextAnim textAnim in textAnimScripts)
+        {
+            textAnim.TextsVanish();
+        }
+    }
+
 }
-    
+
 

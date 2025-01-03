@@ -43,15 +43,7 @@ public class TextAnim : MonoBehaviour
             }
             else if (currentTriggerIndex == textBoxNumber - 1)
             {
-                // Eðer belirtilen sayýya ulaþýldýysa animasyonlarý tetikle
-                VanishRightAnimator.SetTrigger("VanishRightTrigger");
-                VanishLeftAnimator.SetTrigger("VanishLeftTrigger");
-                Debug.Log("Animasyon tetiklendi: VanishRightTrigger ve VanishLeftTrigger");
-                ButtonManager.startedConversation = false;
-                ButtonManager.CanTriggerTalkAgain = true;
-                ButtonManager.clickedOnSuspect = false;
-                ButtonManager.canCloseTheRed = true;
-                StartCoroutine(DestroyTheText(3.5f));
+                TextsVanish();
             }
             }
         else if(asistantMechanic.isClickedOnAsistant)
@@ -73,5 +65,18 @@ public class TextAnim : MonoBehaviour
     {
         yield return new WaitForSeconds(destroytime);
         Destroy(transform.parent.gameObject);
+    }
+
+    public void TextsVanish() 
+    {
+        // Eðer belirtilen sayýya ulaþýldýysa animasyonlarý tetikle
+        VanishRightAnimator.SetTrigger("VanishRightTrigger");
+        VanishLeftAnimator.SetTrigger("VanishLeftTrigger");
+        Debug.Log("Animasyon tetiklendi: VanishRightTrigger ve VanishLeftTrigger");
+        ButtonManager.startedConversation = false;
+        ButtonManager.CanTriggerTalkAgain = true;
+        ButtonManager.clickedOnSuspect = false;
+        ButtonManager.canCloseTheRed = true;
+        StartCoroutine(DestroyTheText(3.5f));
     }
 }
