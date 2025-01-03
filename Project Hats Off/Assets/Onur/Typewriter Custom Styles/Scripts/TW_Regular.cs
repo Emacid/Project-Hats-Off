@@ -49,7 +49,7 @@ public class TW_Regular : MonoBehaviour
     private List<int> n_l_list;
     private static string[] PointerSymbols = { "None", "<", "_", "|", ">" };
 
-    private float typingSpeed = 0.0127f;
+    private float typingSpeed = 0.0627f;
 
     void Start()
     {
@@ -61,10 +61,16 @@ public class TW_Regular : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (start == true)
+        if (start)
         {
+            time += Time.deltaTime; // Zamanı deltaTime ile biriktiriyoruz
+            if (time >= typingSpeed) // Birikmiş zaman yeterli ise
+            {
+                CharIndexPlus();
+                time = 0f; // Zamanı sıfırla
+            }
             NewLineCheck(ORIGINAL_TEXT);
         }
 
@@ -170,10 +176,13 @@ public class TW_Regular : MonoBehaviour
 
     private void CharIndexPlus()
     {
-        if (time >= typingSpeed)  // typingSpeed'e göre zaman kontrolü
+        if (сharIndex < ORIGINAL_TEXT.Length)
         {
-            time = 0f;
-            сharIndex += 1;
+            сharIndex++;
+        }
+        else
+        {
+            start = false; // Yazma tamamlandığında durdur
         }
     }
 
