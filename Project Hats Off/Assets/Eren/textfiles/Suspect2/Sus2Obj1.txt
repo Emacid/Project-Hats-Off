@@ -1,0 +1,3 @@
+obje 1 cevap 1 
+obje 1 cevap 2 
+obje 1 cevap 3
