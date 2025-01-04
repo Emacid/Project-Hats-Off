@@ -9,7 +9,9 @@ public class SwapPos : MonoBehaviour
     public bool inTheSecondZone = false;
     public bool folderUp = true;
     public bool inLetterZone = false;
+    public bool inIdBookZone = false;
     public bool isObjectLetter = false;
+    public bool isObjectIdBook = false;
 
     public Animator animator;
     public Animator FolderPageAnimator;
@@ -63,6 +65,11 @@ public class SwapPos : MonoBehaviour
         {
             inLetterZone = true;
         }
+
+        if (other.CompareTag("IDBookZone"))
+        {
+            inIdBookZone = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -78,6 +85,10 @@ public class SwapPos : MonoBehaviour
         if (other.CompareTag("LetterZone"))
         {
             inLetterZone = false;
+        }
+        if (other.CompareTag("IDBookZone"))
+        {
+            inIdBookZone = false;
         }
     }
 
@@ -123,7 +134,14 @@ public class SwapPos : MonoBehaviour
             StartCoroutine(BoxColliderFix());
             
         }
-        else if (!isObjectLetter && !inTheZone && !folderUp && inTheSecondZone)
+        else if (isObjectIdBook && inIdBookZone && !folderUp)
+        {
+            SwapBack();
+            //StartCoroutine(TriggeringCollidersWhileSwapping());
+            StartCoroutine(BoxColliderFix());
+
+        }
+        else if (!isObjectLetter && !isObjectIdBook && !inTheZone && !folderUp && inTheSecondZone)
         {
             SwapBack();
             //StartCoroutine(TriggeringCollidersWhileSwapping());

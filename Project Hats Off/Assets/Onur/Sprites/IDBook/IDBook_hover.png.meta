@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfd0e20d90f69d3429813bdd8f3444a2
+guid: 27a49d320ac4280458b817e19da8e160
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 27
+  spritePixelsToUnits: 22
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,18 +108,50 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: IDBook_hover_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 272
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 121, y: -94}
+        - {x: -136, y: -94}
+        - {x: -136, y: -85}
+        - {x: 117, y: -85}
+        - {x: 117, y: 60}
+        - {x: 136, y: 60}
+        - {x: 136, y: -94}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07e7b3ba69eae024d94a352c78a0d168
+      internalID: 1370923514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      IDBook_hover_0: 1370923514
+      IDBook_hover_1: -2106504007
+      IDBook_hover_2: -800277108
+      IDBook_hover_3: -1390049572
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

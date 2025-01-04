@@ -12,6 +12,7 @@ public class PageChanger : MonoBehaviour
 
     public SpriteRenderer folderSprite;
     public Sprite[] changingSprites;
+    public bool isIdBook = false;
 
     public int maxPageNumber = 4;
 
@@ -58,6 +59,10 @@ public class PageChanger : MonoBehaviour
         if (nextPage < 1 || nextPage > maxPageNumber)
         {
             Debug.Log("Sayfa sýnýrlarý aþýldý.");
+            if (isIdBook) 
+            {
+                HandlePageChange(-2);
+            }
             return;
         }
 

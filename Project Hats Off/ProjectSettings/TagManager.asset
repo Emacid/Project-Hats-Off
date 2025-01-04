@@ -13,6 +13,7 @@ TagManager:
   - SquareSprite
   - ColliderCheck
   - LetterZone
+  - IDBookZone
   layers:
   - Default
   - TransparentFX

@@ -49,7 +49,7 @@ public class TW_Regular : MonoBehaviour
     private List<int> n_l_list;
     private static string[] PointerSymbols = { "None", "<", "_", "|", ">" };
 
-    private float typingSpeed = 0.0627f;
+    private float typingSpeed = 0.0500f;
 
     void Start()
     {
