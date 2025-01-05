@@ -71,7 +71,7 @@ public class SuspectManager : MonoBehaviour
             case 0 when !isPressed:
                 if (buttonManager.startedConversation)
                 {
-                    asistantScript.SpawnAsistantText(0);
+                    asistantScript.SpawnAsistantText(3);
                     break;
                 }
                 else
@@ -80,7 +80,7 @@ public class SuspectManager : MonoBehaviour
             case 1 when !isPressed:
                 if (buttonManager.startedConversation)
                 {
-                    asistantScript.SpawnAsistantText(0);
+                    asistantScript.SpawnAsistantText(3);
                     break;
                 }
                 else
@@ -89,7 +89,7 @@ public class SuspectManager : MonoBehaviour
             case 2 when !isPressed:
                 if (buttonManager.startedConversation)
                 {
-                    asistantScript.SpawnAsistantText(0);
+                    asistantScript.SpawnAsistantText(3);
                     break;
                 }
                 else

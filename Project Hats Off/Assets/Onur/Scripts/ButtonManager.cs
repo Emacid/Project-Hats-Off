@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour
     public bool canShowOutlineOfEvidiences = false;
 
     public Asistant asistantMechanic;
+    public GameObject notepadPopUp;
 
     public int suspectInMiddle = 1;
 
@@ -51,6 +52,25 @@ public class ButtonManager : MonoBehaviour
 
     void Update()
     {
+        /*
+        if(Input.GetKeyDown(KeyCode.Q)) 
+        {
+            FillNotepad(0,0);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            FillNotepad(1, 2);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            FillNotepad(1, 3);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            FillNotepad(2, 3);
+        }
+        */
+
         if (Input.GetMouseButtonDown(0)) // Sol fare butonu basýldýðýnda
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -99,6 +119,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[3]);
+                            FillNotepad(0, 0);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover" && suspectScripts[1].notTalking && suspectInMiddle == 2)
@@ -171,6 +192,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[22]);
+                            FillNotepad(1, 2);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AnimatedCircle2" && suspectScripts[2].notTalking && suspectInMiddle == 3) //&& suspectInMiddle == 1
@@ -300,6 +322,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[14]);
+                            FillNotepad(0, 2);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AnimatedCircleLetter" && suspectScripts[1].notTalking && suspectInMiddle == 2) //&& suspectInMiddle == 1
@@ -351,12 +374,14 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[17]);
+                            FillNotepad(1, 0);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover4" && suspectScripts[2].notTalking && suspectInMiddle == 3)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[25]);
+                            FillNotepad(2, 0);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "evidence_hover5" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
@@ -381,6 +406,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[7]);
+                            FillNotepad(0, 1);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover6" && suspectScripts[1].notTalking && suspectInMiddle == 2)
@@ -405,12 +431,14 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[19]);
+                            FillNotepad(1, 1);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover7" && suspectScripts[2].notTalking && suspectInMiddle == 3)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[23]);
+                            FillNotepad(2, 3);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "AnimatedCircle10" && suspectScripts[0].notTalking && suspectInMiddle == 1) 
@@ -423,6 +451,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[42]);
+                            FillNotepad(1, 3);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AnimatedCircle10" && suspectScripts[2].notTalking && suspectInMiddle == 3) 
@@ -981,6 +1010,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[135]);
+                            FillNotepad(1, 4);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AnimatedCircle41" && suspectScripts[2].notTalking && suspectInMiddle == 3)
@@ -1047,6 +1077,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[146]);
+                            FillNotepad(0, 3);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AnimatedCircle45" && suspectScripts[1].notTalking && suspectInMiddle == 2)
@@ -1077,12 +1108,14 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[151]);
+                            FillNotepad(2, 2);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "AnimatedCircle47" && suspectScripts[0].notTalking && suspectInMiddle == 1)
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[152]);
+                            FillNotepad(0, 4);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AnimatedCircle47" && suspectScripts[1].notTalking && suspectInMiddle == 2)
@@ -1131,6 +1164,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[160]);
+                            FillNotepad(2, 1);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "AnimatedCircle50" && suspectScripts[0].notTalking && suspectInMiddle == 1)
@@ -1167,6 +1201,7 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[166]);
+                            FillNotepad(2, 4);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "AnimatedCircle52" && suspectScripts[0].notTalking && suspectInMiddle == 1)
@@ -1707,9 +1742,25 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    private void FillNotepad(int notepadNumber, int hintNumber) 
+    // Daha önce çaðrýlan deðerleri saklamak için sýnýf düzeyi bir HashSet
+    private HashSet<(int, int)> usedNotepadHints = new HashSet<(int, int)>();
+
+    private void FillNotepad(int notepadNumber, int hintNumber)
     {
+        // Eðer bu kombinasyon daha önce kullanýldýysa fonksiyonu çalýþtýrma.
+        if (usedNotepadHints.Contains((notepadNumber, hintNumber)))
+        {
+            Debug.Log($"Notepad {notepadNumber}, Hint {hintNumber} zaten yüklendi!");
+            return;
+        }
+
+        // Eðer kullanýlmadýysa ekleyip iþlemi yap.
+        usedNotepadHints.Add((notepadNumber, hintNumber));
         notepadPages[notepadNumber].HintLoad(hintNumber);
+        Instantiate(notepadPopUp);
+        Debug.Log($"Notepad {notepadNumber}, Hint {hintNumber} yüklendi.");
     }
+
+
 
 }

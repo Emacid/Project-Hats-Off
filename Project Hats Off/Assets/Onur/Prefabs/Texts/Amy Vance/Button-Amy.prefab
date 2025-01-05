@@ -4888,7 +4888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Why would I lie about a stupid button?
+  m_text: Why would I lie about a stupid pin?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
   m_sharedMaterial: {fileID: -9064290791257379568, guid: 53d2225deffa1dd4c9dd7801a03d39c3, type: 2}
@@ -5996,7 +5996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6065344764467314027, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
       propertyPath: m_text
-      value: What do you know about this jacket button?
+      value: What do you know about this pin?
       objectReference: {fileID: 0}
     - target: {fileID: 6065344764467314027, guid: 07c9a1939b774c54aa27cf718b869a80, type: 3}
       propertyPath: m_fontAsset

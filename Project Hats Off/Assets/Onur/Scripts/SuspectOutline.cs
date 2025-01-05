@@ -105,10 +105,22 @@ public class SuspectOutline : MonoBehaviour
             // Kýrmýzý outline'ý tekrar týklayýnca kapatma
             StartCoroutine(CloseTheOutlineByClickingAgain());
         }
-        else if (canInteract && notTalking && asistantMechanic.isClickedOnAsistant)
+        else if (asistantMechanic.isClickedOnAsistant)
         {
             // Asistant mekanizmasý ile etkileþim
-            //asistantMechanic.SpawnAsistantText();
+            if(buttonManager.suspectInMiddle == 1) 
+            {
+                asistantMechanic.SpawnAsistantText(8);
+            }
+            else if (buttonManager.suspectInMiddle == 2)
+            {
+                asistantMechanic.SpawnAsistantText(9);
+            }
+            else if (buttonManager.suspectInMiddle == 3)
+            {
+                asistantMechanic.SpawnAsistantText(10);
+            }
+
         }
         else if (canInteract && notTalking)
         {

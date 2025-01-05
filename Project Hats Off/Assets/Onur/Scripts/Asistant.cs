@@ -48,7 +48,11 @@ public class Asistant : MonoBehaviour
         }
         else
         {
-            if (ButtonManager.clickedOnSuspect)
+            if (ButtonManager.clickedOnSuspect && ButtonManager.startedConversation) 
+            {
+                //SpawnAsistantText(8);
+            }
+                else if (ButtonManager.clickedOnSuspect)
             {
                 
                 foreach (var outline in suspectOutlines)

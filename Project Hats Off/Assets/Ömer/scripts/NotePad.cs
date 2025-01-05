@@ -38,7 +38,7 @@ public class NotePad : MonoBehaviour
 
 
     private void Update()
-    {
+    {/*
         if(Input.GetKeyDown(key))
         {
             HintLoad(0);
@@ -63,6 +63,7 @@ public class NotePad : MonoBehaviour
         {
             HintLoad(5);
         }
+        */
     }
 
     public void HintLoad(int index)
