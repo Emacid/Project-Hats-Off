@@ -155,7 +155,7 @@ public class ButtonManager : MonoBehaviour
                         else if (obj.name == "AsistantEvidienceHover4")
                         {
                             Debug.Log("Asistan Tetiklendi!!!");
-                            asistantMechanic.SpawnAsistantText(3);
+                            asistantMechanic.SpawnAsistantText(16);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AsistantEvidienceHover5")
@@ -180,6 +180,36 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Asistan Tetiklendi!!!");
                             asistantMechanic.SpawnAsistantText(7);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "OutlineCaseFile")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(11);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "OutlineNotepad")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(12);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "OutlineLetter")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(13);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "OutlineIdBook")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(14);
+                            obj.gameObject.SetActive(false);
+                        }
+                        else if (obj.name == "OutlineNewspaper")
+                        {
+                            Debug.Log("Asistan Tetiklendi!!!");
+                            asistantMechanic.SpawnAsistantText(15);
                             obj.gameObject.SetActive(false);
                         }
                         if (obj.name == "AnimatedCircle2" && suspectScripts[0].notTalking && suspectInMiddle == 1) //&& suspectInMiddle == 1

@@ -16,6 +16,7 @@ public class Asistant : MonoBehaviour
     public bool triggerToClosingTheOutline = false;
 
     public Button assistantButton;
+    public Sprite[] asistantButtonSprites;
 
     public SuspectOutline[] suspectOutlines;
 
@@ -24,6 +25,7 @@ public class Asistant : MonoBehaviour
     void Start()
     {
         DeselectButton(); // Baþlangýçta buton deselect edilir.
+        assistantButton.image.sprite = asistantButtonSprites[0];
     }
 
     void Update()
@@ -83,11 +85,13 @@ public class Asistant : MonoBehaviour
     {
         isManuallySelected = true; // Manuel olarak seçildiðini iþaretle
         EventSystem.current.SetSelectedGameObject(assistantButton.gameObject);
+        assistantButton.image.sprite = asistantButtonSprites[1];
     }
 
     private void DeselectButton()
     {
         isManuallySelected = false; // Manuel seçim durumunu sýfýrla
         EventSystem.current.SetSelectedGameObject(null);
+        assistantButton.image.sprite = asistantButtonSprites[0];
     }
 }
