@@ -161,7 +161,7 @@ public class ButtonManager : MonoBehaviour
                         else if (obj.name == "AsistantEvidienceHover5")
                         {
                             Debug.Log("Asistan Tetiklendi!!!");
-                            asistantMechanic.SpawnAsistantText(4);
+                            asistantMechanic.SpawnAsistantText(17);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "AsistantEvidienceHover6")

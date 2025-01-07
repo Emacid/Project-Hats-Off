@@ -88,7 +88,7 @@ public class DraggableObject : MonoBehaviour
         {
             folderDraggableObject.transform.localPosition = originalPos;
         }
-        Cursor.visible = false;
+        //Cursor.visible = false;
         if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
         Vector2 newPos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - difference;
 
@@ -99,7 +99,7 @@ public class DraggableObject : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        Cursor.visible = true;
+        //Cursor.visible = true;
     }
 
     private void OnMouseOver()

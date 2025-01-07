@@ -26,7 +26,7 @@ TagManager:
   - ObjectInTableColliding
   - PhotographInTableColliding
   - Suspect
-  - 
+  - Greatest Layer
   - 
   - 
   - 
@@ -59,4 +59,7 @@ TagManager:
     locked: 0
   - name: DraggableObjectLayer
     uniqueID: 3844608675
+    locked: 0
+  - name: BLOCKEVERYTHING
+    uniqueID: 4287586467
     locked: 0

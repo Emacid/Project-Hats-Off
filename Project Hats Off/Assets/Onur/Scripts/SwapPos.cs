@@ -15,6 +15,7 @@ public class SwapPos : MonoBehaviour
 
     public Animator animator;
     public Animator FolderPageAnimator;
+    private HoverForMouseIcon HoverForMouseIcon;
 
     private Rigidbody2D rigidBody2D;
     private BoxCollider2D boxCollider2D;
@@ -24,6 +25,8 @@ public class SwapPos : MonoBehaviour
 
     public GameObject draggableObject;
     public GameObject folderObject;
+
+    public HoverForMouseIcon newHoverForMouseIcon;
 
     public DraggableObject DraggableObjectScript;
     private Vector2 originalPos;
@@ -35,6 +38,8 @@ public class SwapPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        HoverForMouseIcon = GetComponent<HoverForMouseIcon>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         originalPos = new Vector2(0, 0);
@@ -44,8 +49,11 @@ public class SwapPos : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
+    {/*
+        if(Input.GetKeyDown(KeyCode.Keypad7)) {
+            newHoverForMouseIcon = gameObject.AddComponent<HoverForMouseIcon>();
+        }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -125,6 +133,7 @@ public class SwapPos : MonoBehaviour
         if (inTheZone && folderUp)
         {
             Swap();
+            Destroy(HoverForMouseIcon);
             //StartCoroutine(TriggeringCollidersWhileSwapping());
         }
         if (isObjectLetter && inLetterZone && !folderUp)
@@ -182,7 +191,7 @@ public class SwapPos : MonoBehaviour
 
     private void SwapBack()
     {
-
+        
         DraggableObjectScript.isDraggable = false;
         boxCollider2D.isTrigger = true;
         boxCollider2D.size = new Vector2(values[0], values[1]);
@@ -235,6 +244,7 @@ public class SwapPos : MonoBehaviour
         DraggableObjectScript.Offset();
         //boxCollider2D.enabled = true;
         //boxCollider2D.isTrigger = true;
+        newHoverForMouseIcon = gameObject.AddComponent<HoverForMouseIcon>();
     }
 
     private IEnumerator TriggeringCollidersWhileSwapping()
