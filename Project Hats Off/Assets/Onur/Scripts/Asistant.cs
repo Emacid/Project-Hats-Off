@@ -9,7 +9,6 @@ public class Asistant : MonoBehaviour
     public bool isClickedOnAsistant = false;
 
     public ButtonManager ButtonManager;
-    //
     public GameObject[] asistantTextForMidterm;
     public Transform ParentForSpawn;
 
@@ -21,6 +20,7 @@ public class Asistant : MonoBehaviour
     public SuspectOutline[] suspectOutlines;
 
     private bool isManuallySelected = false; // Manuel seçim durumu
+    private float lastSpawnTime = -5f; // Son tetiklenme zamanýný tutar (baþlangýçta 5 saniye önce tetiklenmiþ varsayýlýr)
 
     void Start()
     {
@@ -50,35 +50,36 @@ public class Asistant : MonoBehaviour
         }
         else
         {
-            if (ButtonManager.clickedOnSuspect && ButtonManager.startedConversation) 
+            if (ButtonManager.clickedOnSuspect && ButtonManager.startedConversation)
             {
                 //SpawnAsistantText(8);
             }
-                else if (ButtonManager.clickedOnSuspect)
+            else if (ButtonManager.clickedOnSuspect)
             {
-                
                 foreach (var outline in suspectOutlines)
                 {
                     outline.CloseTheOutlineByClickingAgainn();
-                    //outline.isOutlinedRed = false;
                 }
             }
-            
-            {
-                // Buton seçili deðilse, select iþlemi yapýlýr
-                isClickedOnAsistant = true;
+
+            // Buton seçili deðilse, select iþlemi yapýlýr
+            isClickedOnAsistant = true;
             ButtonManager.canShowOutlineOfEvidiences = true;
             SelectButton();
-            }
         }
     }
 
     public void SpawnAsistantText(int textNumber)
     {
-        Instantiate(asistantTextForMidterm[textNumber], ParentForSpawn);
-        isClickedOnAsistant = false;
-        triggerToClosingTheOutline = true;
-        DeselectButton();
+        // Eðer son tetiklenme üzerinden 5 saniyeden fazla geçmiþse, fonksiyonu çalýþtýr
+        if (Time.time - lastSpawnTime > 5f)
+        {
+            Instantiate(asistantTextForMidterm[textNumber], ParentForSpawn);
+            isClickedOnAsistant = false;
+            triggerToClosingTheOutline = true;
+            DeselectButton();
+            lastSpawnTime = Time.time; // Tetiklenme zamanýný güncelle
+        }
     }
 
     private void SelectButton()

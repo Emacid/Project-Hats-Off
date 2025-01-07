@@ -16,10 +16,11 @@ public class SwapPos : MonoBehaviour
     public Animator animator;
     public Animator FolderPageAnimator;
     private HoverForMouseIcon HoverForMouseIcon;
-
+    private ButtonManager buttonManager;
     private Rigidbody2D rigidBody2D;
     private BoxCollider2D boxCollider2D;
     public BoxCollider2D tableCollider;
+    private Asistant asistant;
 
     public BoxCollider2D[] triggeringColliders;
 
@@ -38,7 +39,8 @@ public class SwapPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        buttonManager = GameObject.Find("Question Button Manager").GetComponent<ButtonManager>();
+        asistant = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
         HoverForMouseIcon = GetComponent<HoverForMouseIcon>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
@@ -160,8 +162,14 @@ public class SwapPos : MonoBehaviour
 
     private void Swap()
     {
-
-        DraggableObjectScript.isDraggable = false;
+        buttonManager.CheckFolderUp();
+        if (buttonManager.openFolderCount > 1)
+        {
+            asistant.SpawnAsistantText(18);
+        }
+        else
+        {
+            DraggableObjectScript.isDraggable = false;
         rigidBody2D.gravityScale = 0f;
         boxCollider2D.enabled = false;
         boxCollider2D.size = new Vector2(values[2], values[3]);
@@ -175,6 +183,7 @@ public class SwapPos : MonoBehaviour
         Debug.Log("Folder konumlarý Swaplanýyor!");
         inTheZone = false;
         folderUp = false;
+        }
     }
 
     private IEnumerator ReturnToNormalPos(float delay)

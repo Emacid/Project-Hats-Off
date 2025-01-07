@@ -11,8 +11,11 @@ public class ButtonManager : MonoBehaviour
     public bool clickedOnSuspect = false;
     public bool canShowOutlineOfEvidiences = false;
 
+    public int openFolderCount = 7;
+
     public Asistant asistantMechanic;
     public GameObject notepadPopUp;
+    public SwapPos[] swapPosOfFolders;
 
     public int suspectInMiddle = 1;
 
@@ -48,6 +51,7 @@ public class ButtonManager : MonoBehaviour
     private void Start()
     {
         CanTriggerTalkAgain = false;
+        CheckFolderUp();
     }
 
     void Update()
@@ -70,7 +74,6 @@ public class ButtonManager : MonoBehaviour
             FillNotepad(2, 3);
         }
         */
-
         if (Input.GetMouseButtonDown(0)) // Sol fare butonu basýldýðýnda
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -1760,6 +1763,8 @@ public class ButtonManager : MonoBehaviour
 
     private void InstantiateTexts(GameObject textnumber)
     {
+        CheckFolderUp();
+
         Instantiate(textnumber, allTextsParent);
         canCloseTheOutline = true;
         startedConversation = true;
@@ -1770,6 +1775,7 @@ public class ButtonManager : MonoBehaviour
         {
             suspectScripts[i].notTalking = false;
         }
+        
     }
 
     // Daha önce çaðrýlan deðerleri saklamak için sýnýf düzeyi bir HashSet
@@ -1791,6 +1797,16 @@ public class ButtonManager : MonoBehaviour
         Debug.Log($"Notepad {notepadNumber}, Hint {hintNumber} yüklendi.");
     }
 
-
+    public void CheckFolderUp() 
+    {
+        openFolderCount = 7;
+        foreach (SwapPos folderUpInSwapPos in swapPosOfFolders)
+        {
+            if (folderUpInSwapPos.folderUp == true)
+            {
+                openFolderCount--;
+            }
+        }
+    }
 
 }
