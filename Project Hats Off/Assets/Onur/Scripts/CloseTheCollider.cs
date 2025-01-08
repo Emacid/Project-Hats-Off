@@ -24,7 +24,7 @@ public class CloseTheCollider : MonoBehaviour
     {
         foreach (BoxCollider2D boxCollider in boxCollider2Ds)
         {
-            boxCollider.enabled = false;
+            //boxCollider.enabled = false;
         }
 
 
@@ -39,7 +39,7 @@ public class CloseTheCollider : MonoBehaviour
 
         foreach (SuspectOutline suspectOutline in suspectOutlines)
         {
-            suspectOutline.canInteract = true;
+            //suspectOutline.canInteract = true;
         }
     }
 }

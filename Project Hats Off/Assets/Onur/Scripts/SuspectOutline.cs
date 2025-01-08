@@ -21,8 +21,8 @@ public class SuspectOutline : MonoBehaviour
 
     public Asistant asistantMechanic;
 
-    private int objectCount = 0; // Object etiketine sahip nesnelerin sayýsý
-    private int photoCount = 0;  // Photo etiketine sahip nesnelerin sayýsý
+    public int objectCount = 0; // Object etiketine sahip nesnelerin sayýsý
+    public int photoCount = 0;  // Photo etiketine sahip nesnelerin sayýsý
 
     void Start()
     {
@@ -52,6 +52,12 @@ public class SuspectOutline : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.L)) 
+        {
+            print(objectCount + "adet obje");
+            print(photoCount + "adet foto");
+        }
+
         if (buttonManager.canCloseTheRed)
         {
             StartCoroutine(CloseTheRed());

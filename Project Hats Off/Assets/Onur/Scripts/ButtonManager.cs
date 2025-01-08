@@ -13,6 +13,8 @@ public class ButtonManager : MonoBehaviour
 
     public int openFolderCount = 7;
 
+    public TMPColorChanger tmpColorChangerForTalks;
+
     public Asistant asistantMechanic;
     public GameObject notepadPopUp;
     public SwapPos[] swapPosOfFolders;
@@ -1765,7 +1767,9 @@ public class ButtonManager : MonoBehaviour
     {
         CheckFolderUp();
 
+        
         Instantiate(textnumber, allTextsParent);
+        tmpColorChangerForTalks.ChangeTMPColorsToBlack();
         canCloseTheOutline = true;
         startedConversation = true;
         CanTriggerTalkAgain = false;

@@ -14,6 +14,8 @@ public class Asistant : MonoBehaviour
 
     public bool triggerToClosingTheOutline = false;
 
+    public TMPColorChanger tmpColorChangerForAsistant;
+
     public Button assistantButton;
     public Sprite[] asistantButtonSprites;
 
@@ -71,10 +73,12 @@ public class Asistant : MonoBehaviour
 
     public void SpawnAsistantText(int textNumber)
     {
+        
         // Eðer son tetiklenme üzerinden 5 saniyeden fazla geçmiþse, fonksiyonu çalýþtýr
         if (Time.time - lastSpawnTime > 5f)
         {
             Instantiate(asistantTextForMidterm[textNumber], ParentForSpawn);
+            tmpColorChangerForAsistant.ChangeTMPColorsToBlack();
             isClickedOnAsistant = false;
             triggerToClosingTheOutline = true;
             DeselectButton();

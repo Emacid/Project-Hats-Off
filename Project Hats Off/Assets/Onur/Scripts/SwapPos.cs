@@ -163,11 +163,13 @@ public class SwapPos : MonoBehaviour
     private void Swap()
     {
         buttonManager.CheckFolderUp();
-        if (buttonManager.openFolderCount > 1)
+        
+        if (buttonManager.openFolderCount > 2)
         {
             asistant.SpawnAsistantText(18);
         }
         else
+        
         {
             DraggableObjectScript.isDraggable = false;
         rigidBody2D.gravityScale = 0f;
