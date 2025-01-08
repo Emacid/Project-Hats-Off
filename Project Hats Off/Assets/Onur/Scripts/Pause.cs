@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     private bool isPaused = false;
-    public DraggableEvidience[] draggableEvidiences;
+    public DraggableEvidence[] draggableEvidiences;
     public DraggableObject[] draggableObjects;
 
     void Update()
@@ -44,7 +44,7 @@ public class Pause : MonoBehaviour
     {
         foreach (var draggableEvidence in draggableEvidiences)
         {
-            var draggableScript = draggableEvidence.GetComponent<DraggableEvidience>();
+            var draggableScript = draggableEvidence.GetComponent<DraggableEvidence>();
             if (draggableScript != null)
             {
                 draggableScript.enabled = isEnabled;

@@ -15,11 +15,13 @@ public class PageChanger : MonoBehaviour
     public bool isIdBook = false;
 
     public int maxPageNumber = 4;
+    private AudioSource pageChangerAudioSource;
 
     private void Start()
     {
         UpdatePageVisibility();
         UpdateFolderSprite(myPage);
+        pageChangerAudioSource = GameObject.Find("PageChangerAudio").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -55,7 +57,7 @@ public class PageChanger : MonoBehaviour
     private void HandlePageChange(int direction)
     {
         int nextPage = myPage + direction;
-
+        pageChangerAudioSource.Play();
         if (nextPage < 1 || nextPage > maxPageNumber)
         {
             Debug.Log("Sayfa sýnýrlarý aþýldý.");
