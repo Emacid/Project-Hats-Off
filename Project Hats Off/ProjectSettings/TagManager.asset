@@ -14,6 +14,7 @@ TagManager:
   - ColliderCheck
   - LetterZone
   - IDBookZone
+  - MiddleScreen
   layers:
   - Default
   - TransparentFX

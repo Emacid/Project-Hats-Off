@@ -52,11 +52,6 @@ public class SuspectOutline : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L)) 
-        {
-            print(objectCount + "adet obje");
-            print(photoCount + "adet foto");
-        }
 
         if (buttonManager.canCloseTheRed)
         {

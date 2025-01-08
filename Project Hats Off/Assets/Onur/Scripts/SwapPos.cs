@@ -13,6 +13,8 @@ public class SwapPos : MonoBehaviour
     public bool isObjectLetter = false;
     public bool isObjectIdBook = false;
 
+    //private NoGrav noGravScript;
+
     public Animator animator;
     public Animator FolderPageAnimator;
     private HoverForMouseIcon HoverForMouseIcon;
@@ -39,6 +41,7 @@ public class SwapPos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //noGravScript = GetComponent<NoGrav>();
         buttonManager = GameObject.Find("Question Button Manager").GetComponent<ButtonManager>();
         asistant = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
         HoverForMouseIcon = GetComponent<HoverForMouseIcon>();
@@ -163,7 +166,7 @@ public class SwapPos : MonoBehaviour
     private void Swap()
     {
         buttonManager.CheckFolderUp();
-        
+        //noGravScript.caseFileOpen = true;
         if (buttonManager.openFolderCount > 2)
         {
             asistant.SpawnAsistantText(18);
@@ -256,6 +259,7 @@ public class SwapPos : MonoBehaviour
         //boxCollider2D.enabled = true;
         //boxCollider2D.isTrigger = true;
         newHoverForMouseIcon = gameObject.AddComponent<HoverForMouseIcon>();
+        //noGravScript.caseFileOpen = false;
     }
 
     private IEnumerator TriggeringCollidersWhileSwapping()
