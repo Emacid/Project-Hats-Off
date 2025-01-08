@@ -22,6 +22,7 @@ public class ButtonManager : MonoBehaviour
     public int suspectInMiddle = 1;
 
     public bool canCloseTheRed = false;
+    public AudioSource clickSound;
 
     public SuspectOutline[] suspectScripts;
     public NotePad[] notepadPages;
@@ -1769,6 +1770,7 @@ public class ButtonManager : MonoBehaviour
 
         
         Instantiate(textnumber, allTextsParent);
+        clickSound.Play();
         tmpColorChangerForTalks.ChangeTMPColorsToBlack();
         canCloseTheOutline = true;
         startedConversation = true;
