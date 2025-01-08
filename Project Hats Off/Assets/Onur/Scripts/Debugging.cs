@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Debugging : MonoBehaviour
 {
-    public GameObject text01;
-    public Transform allTextsParent; 
+    public Animator[] animators;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +16,16 @@ public class Debugging : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F10))
+        if (Input.GetKeyDown(KeyCode.F10)) 
         {
-            text01.gameObject.SetActive(true);
+            callTriggers();
         }
 
-        if (Input.GetKeyUp(KeyCode.F11))
-        {
-            
-            Instantiate(text01, allTextsParent);
-        }
+        
+    }
+    private void callTriggers()
+    {
+        animators[0].SetTrigger("TalkTrigger");
+        animators[1].SetTrigger("TalkTrigger");
     }
 }

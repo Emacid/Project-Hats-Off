@@ -24,6 +24,8 @@ public class DraggableObject : MonoBehaviour
     public float topOffsetWhenPageIsUp = 1.55f;
     public float bottomOffsetWhenPageIsUp = 0.5f;
 
+    private GameObject zoneObject;
+
     public float outOfBoundsOffset = 0.5f; // Ekrandan ne kadar uzakta olursa resetleneceðini ayarlamak için
 
     void Start()
@@ -35,6 +37,7 @@ public class DraggableObject : MonoBehaviour
         maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
         originalPos = new Vector2(0, 0);
         asistantScript = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
+        zoneObject = GameObject.Find("zone");
     }
 
     private void Update()

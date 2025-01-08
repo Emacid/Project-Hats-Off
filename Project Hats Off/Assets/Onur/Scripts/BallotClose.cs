@@ -35,8 +35,15 @@ public class BallotClose : MonoBehaviour
     {
         ballotAnimator.SetTrigger("GoBack");
         stamper.SetLayersBack();
+        StartCoroutine(BallotFix());
         Destroy(ballotObject, 5.0f);
     }
 
-    
+    private IEnumerator BallotFix()
+    {
+        yield return new WaitForSeconds(1.0f);
+        stamper.isBallotUp = false;
+
+    }
+
 }

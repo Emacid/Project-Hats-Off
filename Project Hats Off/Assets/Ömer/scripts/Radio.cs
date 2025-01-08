@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.UI;
 
 public class Radio : MonoBehaviour
@@ -15,7 +16,10 @@ public class Radio : MonoBehaviour
     public bool isMuted;
     public int currentChannel;
 
-
+    public Sprite[] radioSprites;
+    public SpriteRenderer radioSpriteRenderer;
+    public Animator radioAnimator;
+    public SpriteRenderer secondRadio;
     private void Start()
     {
         channels.Clear();
@@ -67,6 +71,18 @@ public class Radio : MonoBehaviour
         if (isSingleClick)
         {
             OnSingleClick();
+            if(currentChannel == 0) 
+            {
+                radioSpriteRenderer.sprite = radioSprites[0];
+            }
+            else if (currentChannel == 1)
+            {
+                radioSpriteRenderer.sprite = radioSprites[1];
+            }
+            else if (currentChannel == 2)
+            {
+                radioSpriteRenderer.sprite = radioSprites[2];
+            }
         }
     }
 
@@ -74,13 +90,17 @@ public class Radio : MonoBehaviour
     {
         if (!isMuted)
         {
+            secondRadio.enabled = false;
+            radioAnimator.SetTrigger("TurnOffRadio");
             isMuted = true;
             channels[currentChannel].volume = 0;
         } 
         else
         {
+            radioAnimator.SetTrigger("TurnOnRadio");
             isMuted = false;
             channels[currentChannel].volume = 0.5f;
+            StartCoroutine(RadioFix());
         }
         
     }
@@ -109,5 +129,10 @@ public class Radio : MonoBehaviour
         }
     }
 
-    
+    private IEnumerator RadioFix()
+    {
+        yield return new WaitForSeconds(2.0f);
+        secondRadio.enabled = true;
+
+    }
 }
