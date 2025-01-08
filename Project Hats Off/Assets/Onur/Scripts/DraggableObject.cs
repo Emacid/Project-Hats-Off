@@ -82,17 +82,14 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (swapPosScript.folderUp)
+        if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
+
+        // Sürükleme baþladýðýnda zoneObject aktif edilir
+        if (!zoneObject.activeSelf)
         {
-            draggableObject.transform.localPosition = originalPos;
+            zoneObject.SetActive(true);
         }
 
-        if (!swapPosScript.folderUp)
-        {
-            folderDraggableObject.transform.localPosition = originalPos;
-        }
-        //Cursor.visible = false;
-        if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
         Vector2 newPos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - difference;
 
         newPos.x = Mathf.Clamp(newPos.x, minBounds.x, maxBounds.x);
@@ -100,10 +97,16 @@ public class DraggableObject : MonoBehaviour
 
         transform.position = newPos;
     }
+
     private void OnMouseUp()
     {
-        //Cursor.visible = true;
+        // Sürükleme býrakýldýðýnda zoneObject deaktif edilir
+        if (zoneObject.activeSelf)
+        {
+            zoneObject.SetActive(false);
+        }
     }
+
 
     private void OnMouseOver()
     {
