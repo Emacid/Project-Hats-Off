@@ -15,7 +15,7 @@ public class Radio : MonoBehaviour
     public bool isSingleClick;
     public bool isMuted;
     public int currentChannel;
-
+    public float channelVolumes = 1.0f;
     public Sprite[] radioSprites;
     public SpriteRenderer radioSpriteRenderer;
     public Animator radioAnimator;
@@ -46,7 +46,7 @@ public class Radio : MonoBehaviour
 
         if (channels.Count > 0)
         {
-            channels[currentChannel].volume = 0.5f;
+            channels[currentChannel].volume = channelVolumes;
         }
     }
 
@@ -86,7 +86,7 @@ public class Radio : MonoBehaviour
         }
     }
 
-    void OnDoubleClick()
+    public void OnDoubleClick()
     {
         if (!isMuted)
         {
@@ -99,7 +99,7 @@ public class Radio : MonoBehaviour
         {
             radioAnimator.SetTrigger("TurnOnRadio");
             isMuted = false;
-            channels[currentChannel].volume = 0.5f;
+            channels[currentChannel].volume = channelVolumes;
             StartCoroutine(RadioFix());
         }
         
@@ -118,7 +118,7 @@ public class Radio : MonoBehaviour
             currentChannel++;
         }
 
-        channels[currentChannel].volume = 0.5f;
+        channels[currentChannel].volume = channelVolumes;
     }
 
     private void OnDestroy()
