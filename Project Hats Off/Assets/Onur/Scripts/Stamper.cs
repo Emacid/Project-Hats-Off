@@ -12,8 +12,10 @@ public class Stamper : MonoBehaviour
     public bool isBallotUp = false;
     public Button assistantButton;
     public GameObject[] objectsToIgnoreRaycast;
-    private bool isManuallySelected = false; // Manuel seçim durumu
+    public bool isManuallySelected = false; // Manuel seçim durumu
     private MouseIconChanger MouseIconChanger;
+    public Button button;
+    private GameObject ballotBlack;
 
     // Eski layer'larý saklamak için bir sözlük
     private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>();
@@ -22,6 +24,8 @@ public class Stamper : MonoBehaviour
     {
         DeselectButton(); // Baþlangýçta buton deselect edilir.
         MouseIconChanger = GameObject.Find("Mouse Icon Changer").GetComponent<MouseIconChanger>();
+        button = gameObject.GetComponent<Button>();
+        ballotBlack = GameObject.Find("BallotBlack");
     }
 
     void Update()
@@ -41,6 +45,7 @@ public class Stamper : MonoBehaviour
             // Eðer buton zaten seçiliyse, unselect iþlemi yapýlýr
             isClickedOnAsistant = false;
             DeselectButton();
+            print("click on stamper!");
         }
         else
         {
@@ -60,14 +65,18 @@ public class Stamper : MonoBehaviour
             //SetLayerRecursively(allsuspects.transform, 2);
             Instantiate(ballotObject);
             ChangeLayers();
+            button.interactable = false;
+            ballotBlack.SetActive(true);
         }
+        
     }
 
-    private void DeselectButton()
+    public void DeselectButton()
     {
         isManuallySelected = false; // Manuel seçim durumunu sýfýrla
         EventSystem.current.SetSelectedGameObject(null);
         SetLayersBack();
+        print("deselect on stamper!");
     }
 
     private void SetLayerRecursively(Transform obj, int layer)

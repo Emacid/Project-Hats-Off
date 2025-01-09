@@ -18,7 +18,7 @@ public class Debugging : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F10)) 
         {
-            callTriggers();
+            DebugTime();
         }
 
         
@@ -27,5 +27,10 @@ public class Debugging : MonoBehaviour
     {
         animators[0].SetTrigger("TalkTrigger");
         animators[1].SetTrigger("TalkTrigger");
+    }
+
+    public void DebugTime() 
+    {
+        print("DEBUG TIME!");
     }
 }

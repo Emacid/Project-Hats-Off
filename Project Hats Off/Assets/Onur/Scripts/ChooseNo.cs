@@ -8,10 +8,10 @@ public class ChooseNo : MonoBehaviour
     public Sprite mainSprite;
     public Sprite noHoverSprite;
     public GameObject parentObject;
-
+    private AudioSource clickSound;
     void Start()
     {
-
+        clickSound = GameObject.Find("AsistantClickAudio").GetComponent<AudioSource>();
     }
 
 
@@ -33,6 +33,7 @@ public class ChooseNo : MonoBehaviour
     private void OnMouseDown()
     {
         parentObject.SetActive(false);
+        clickSound.Play();
     }
 
 }

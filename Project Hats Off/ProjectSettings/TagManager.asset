@@ -15,6 +15,7 @@ TagManager:
   - LetterZone
   - IDBookZone
   - MiddleScreen
+  - StamperCollider
   layers:
   - Default
   - TransparentFX

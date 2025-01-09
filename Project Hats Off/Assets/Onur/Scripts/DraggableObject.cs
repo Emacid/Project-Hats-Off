@@ -14,7 +14,9 @@ public class DraggableObject : MonoBehaviour
     public GameObject outlinedObjectVariant;
     private Asistant asistantScript;
     public bool changeOffset = false;
-
+    private bool isDragging = false; // Sürükleme kontrolü
+    private Vector2 initialMousePosition; // Ýlk týklama pozisyonu
+    public float dragThresholdDistance = 0.1f; // Sürükleme baþlama mesafesi
     public float rightOffset = 1.55f;
     public float leftOffset = 1.55f;
     public float rightOffsetWhenPageIsUp = 1.55f;
@@ -68,13 +70,17 @@ public class DraggableObject : MonoBehaviour
     private void OnMouseDown()
     {
         if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
+
         difference = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
+
+        initialMousePosition = cam.ScreenToWorldPoint(Input.mousePosition); // Ýlk týklama pozisyonu
+        isDragging = false; // Henüz sürükleme baþlamadý
+
         if (swapPosScript.folderUp)
         {
             draggableObject.transform.localPosition = originalPos;
         }
-
-        if (!swapPosScript.folderUp)
+        else
         {
             folderDraggableObject.transform.localPosition = originalPos;
         }
@@ -84,18 +90,30 @@ public class DraggableObject : MonoBehaviour
     {
         if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
 
-        // Sürükleme baþladýðýnda zoneObject aktif edilir
-        if (!zoneObject.activeSelf)
+        Vector2 currentMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        float dragDistance = Vector2.Distance(initialMousePosition, currentMousePosition); // Fare hareketi mesafesi
+
+        // Fare hareketi belirli bir mesafeyi geçerse sürüklemeyi baþlat
+        if (!isDragging && dragDistance >= dragThresholdDistance)
         {
-            zoneObject.SetActive(true);
+            isDragging = true;
+
+            // Sürükleme baþladýðýnda zoneObject aktif edilir
+            if (!zoneObject.activeSelf)
+            {
+                zoneObject.SetActive(true);
+            }
         }
 
-        Vector2 newPos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - difference;
+        if (isDragging)
+        {
+            Vector2 newPos = currentMousePosition - difference;
 
-        newPos.x = Mathf.Clamp(newPos.x, minBounds.x, maxBounds.x);
-        newPos.y = Mathf.Clamp(newPos.y, minBounds.y, maxBounds.y);
+            newPos.x = Mathf.Clamp(newPos.x, minBounds.x, maxBounds.x);
+            newPos.y = Mathf.Clamp(newPos.y, minBounds.y, maxBounds.y);
 
-        transform.position = newPos;
+            transform.position = newPos;
+        }
     }
 
     private void OnMouseUp()
@@ -105,12 +123,14 @@ public class DraggableObject : MonoBehaviour
         {
             zoneObject.SetActive(false);
         }
+
+        isDragging = false; // Sürükleme sona erdi
     }
 
 
     private void OnMouseOver()
     {
-        if (asistantScript.isClickedOnAsistant) 
+        if (asistantScript.isClickedOnAsistant)
         {
             outlinedObjectVariant.gameObject.SetActive(true);
         }
