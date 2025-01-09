@@ -10,6 +10,7 @@ public class SuspectManager : MonoBehaviour
     public Transform middlePosition;
     public Transform rightPosition;
     public float moveSpeed = 0.5f;  // Hareket hýzý
+    public GameObject[] suspectBackgrounds;
 
     private GameObject currentSuspect;  // Þu an ortada olan þüpheli
 
@@ -109,6 +110,7 @@ public class SuspectManager : MonoBehaviour
         currentSuspect = suspects[suspectIndex];
         StartCoroutine(MoveToPosition(currentSuspect, middlePosition.position));
         buttonManager.suspectInMiddle = suspectIndex+1;
+        showSuspectBackground();
     }
 
     private IEnumerator MoveToPosition(GameObject suspect, Vector3 targetPosition)
@@ -135,6 +137,28 @@ public class SuspectManager : MonoBehaviour
         foreach (TextAnim textAnim in textAnimScripts)
         {
             textAnim.TextsVanish();
+        }
+    }
+
+    private void showSuspectBackground() 
+    {
+        if(buttonManager.suspectInMiddle == 1) 
+        {
+            suspectBackgrounds[0].SetActive(true);
+            suspectBackgrounds[1].SetActive(false);
+            suspectBackgrounds[2].SetActive(false);
+        }
+        else if (buttonManager.suspectInMiddle == 2)
+        {
+            suspectBackgrounds[0].SetActive(false);
+            suspectBackgrounds[1].SetActive(true);
+            suspectBackgrounds[2].SetActive(false);
+        }
+        else if (buttonManager.suspectInMiddle == 3)
+        {
+            suspectBackgrounds[0].SetActive(false);
+            suspectBackgrounds[1].SetActive(false);
+            suspectBackgrounds[2].SetActive(true);
         }
     }
 

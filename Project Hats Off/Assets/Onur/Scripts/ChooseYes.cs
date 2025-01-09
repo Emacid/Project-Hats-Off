@@ -8,7 +8,7 @@ public class ChooseYes : MonoBehaviour
     public Sprite mainSprite;
     public Sprite noHoverSprite;
     public GameObject parentObject;
-
+    public GameObject ballotStamp;
     void Start()
     {
 
@@ -32,6 +32,7 @@ public class ChooseYes : MonoBehaviour
 
     private void OnMouseDown()
     {
+        ballotStamp.SetActive(true);
         if(gameObject.name == "TrueYes") 
         {
             print("DOÐRU SUSPECT!");

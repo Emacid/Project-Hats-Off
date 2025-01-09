@@ -25,6 +25,8 @@ public class DraggableObject : MonoBehaviour
     public float bottomOffset = 0.5f;
     public float topOffsetWhenPageIsUp = 1.55f;
     public float bottomOffsetWhenPageIsUp = 0.5f;
+    private Rigidbody2D rb;
+
 
     private GameObject zoneObject;
 
@@ -40,6 +42,7 @@ public class DraggableObject : MonoBehaviour
         originalPos = new Vector2(0, 0);
         asistantScript = GameObject.Find("AsistantMechanic").GetComponent<Asistant>();
         zoneObject = GameObject.Find("zone");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -88,17 +91,17 @@ public class DraggableObject : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!isDraggable) return; // Sürükleme devrede deðilse iþlemi durdur
+        if (!isDraggable) return;
+
+        // Rigidbody hýzýný sýfýrla
+        rb.velocity = Vector2.zero;
 
         Vector2 currentMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        float dragDistance = Vector2.Distance(initialMousePosition, currentMousePosition); // Fare hareketi mesafesi
+        float dragDistance = Vector2.Distance(initialMousePosition, currentMousePosition);
 
-        // Fare hareketi belirli bir mesafeyi geçerse sürüklemeyi baþlat
         if (!isDragging && dragDistance >= dragThresholdDistance)
         {
             isDragging = true;
-
-            // Sürükleme baþladýðýnda zoneObject aktif edilir
             if (!zoneObject.activeSelf)
             {
                 zoneObject.SetActive(true);
@@ -108,10 +111,8 @@ public class DraggableObject : MonoBehaviour
         if (isDragging)
         {
             Vector2 newPos = currentMousePosition - difference;
-
             newPos.x = Mathf.Clamp(newPos.x, minBounds.x, maxBounds.x);
             newPos.y = Mathf.Clamp(newPos.y, minBounds.y, maxBounds.y);
-
             transform.position = newPos;
         }
     }
