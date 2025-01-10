@@ -17,6 +17,8 @@ TagManager:
   - MiddleScreen
   - StamperCollider
   - ShadowColliderObject
+  - FareTakip
+  - CaseFileZone
   layers:
   - Default
   - TransparentFX

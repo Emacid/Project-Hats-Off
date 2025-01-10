@@ -20,6 +20,7 @@ public class Radio : MonoBehaviour
     public SpriteRenderer radioSpriteRenderer;
     public Animator radioAnimator;
     public SpriteRenderer secondRadio;
+    public Sprite offSprite;
     private void Start()
     {
         channels.Clear();
@@ -68,7 +69,7 @@ public class Radio : MonoBehaviour
 
     void PerformSingleClick()
     {
-        if (isSingleClick)
+        if (isSingleClick && !isMuted)
         {
             OnSingleClick();
             if(currentChannel == 0) 
@@ -91,16 +92,19 @@ public class Radio : MonoBehaviour
         if (!isMuted)
         {
             secondRadio.enabled = false;
+            StartCoroutine(RadioFix2());
             radioAnimator.SetTrigger("TurnOffRadio");
             isMuted = true;
             channels[currentChannel].volume = 0;
         } 
         else
         {
+            secondRadio.enabled = false;
             radioAnimator.SetTrigger("TurnOnRadio");
             isMuted = false;
             channels[currentChannel].volume = channelVolumes;
             StartCoroutine(RadioFix());
+            secondRadio.sprite = radioSprites[currentChannel];
         }
         
     }
@@ -131,7 +135,15 @@ public class Radio : MonoBehaviour
 
     private IEnumerator RadioFix()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.7f);
+        secondRadio.enabled = true;
+
+    }
+
+    private IEnumerator RadioFix2()
+    {
+        yield return new WaitForSeconds(1.0f);
+        secondRadio.sprite = offSprite;
         secondRadio.enabled = true;
 
     }

@@ -16,6 +16,7 @@ public class Stamper : MonoBehaviour
     private MouseIconChanger MouseIconChanger;
     public Button button;
     private GameObject ballotBlack;
+    public GameObject RadioHoverFareObject;
 
     // Eski layer'larý saklamak için bir sözlük
     private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>();
@@ -91,7 +92,7 @@ public class Stamper : MonoBehaviour
     public void ChangeLayers()
     {
         originalLayers.Clear(); // Önce sözlüðü temizliyoruz
-
+        RadioHoverFareObject.SetActive(false);
         foreach (GameObject obj in objectsToIgnoreRaycast)
         {
             SaveAndSetLayerRecursively(obj.transform, 2); // Layer'ý 2 olarak ayarla
@@ -100,6 +101,7 @@ public class Stamper : MonoBehaviour
 
     public void SetLayersBack()
     {
+        RadioHoverFareObject.SetActive(true);
         foreach (var entry in originalLayers)
         {
             RestoreLayerRecursively(entry.Key.transform, entry.Value); // Orijinal layer'larý geri yükle

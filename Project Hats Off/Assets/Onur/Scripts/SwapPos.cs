@@ -12,6 +12,8 @@ public class SwapPos : MonoBehaviour
     public bool inIdBookZone = false;
     public bool isObjectLetter = false;
     public bool isObjectIdBook = false;
+    public bool isCaseFileZone = false;
+    public bool isObjectCaseFile = false;
 
     //private NoGrav noGravScript;
 
@@ -83,6 +85,11 @@ public class SwapPos : MonoBehaviour
         {
             inIdBookZone = true;
         }
+
+        if (other.CompareTag("CaseFileZone"))
+        {
+            isCaseFileZone = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -102,6 +109,10 @@ public class SwapPos : MonoBehaviour
         if (other.CompareTag("IDBookZone"))
         {
             inIdBookZone = false;
+        }
+        if (other.CompareTag("CaseFileZone"))
+        {
+            isCaseFileZone = false;
         }
     }
 
@@ -155,7 +166,13 @@ public class SwapPos : MonoBehaviour
             StartCoroutine(BoxColliderFix());
 
         }
-        else if (!isObjectLetter && !isObjectIdBook && !inTheZone && !folderUp && inTheSecondZone)
+        else if (!isObjectLetter && !isObjectIdBook && !inTheZone && !folderUp && inTheSecondZone && !isObjectCaseFile)
+        {
+            SwapBack();
+            //StartCoroutine(TriggeringCollidersWhileSwapping());
+            StartCoroutine(BoxColliderFix());
+        }
+        else if (!isObjectLetter && !isObjectIdBook && !folderUp  && isObjectCaseFile && isCaseFileZone)
         {
             SwapBack();
             //StartCoroutine(TriggeringCollidersWhileSwapping());

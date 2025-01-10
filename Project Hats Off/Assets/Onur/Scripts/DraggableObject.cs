@@ -26,7 +26,7 @@ public class DraggableObject : MonoBehaviour
     public float topOffsetWhenPageIsUp = 1.55f;
     public float bottomOffsetWhenPageIsUp = 0.5f;
     private Rigidbody2D rb;
-
+    public SpriteRenderer miniSprite;
 
     private GameObject zoneObject;
 
@@ -114,6 +114,9 @@ public class DraggableObject : MonoBehaviour
             newPos.x = Mathf.Clamp(newPos.x, minBounds.x, maxBounds.x);
             newPos.y = Mathf.Clamp(newPos.y, minBounds.y, maxBounds.y);
             transform.position = newPos;
+
+            // Sürükleme sýrasýnda miniSprite'in layer order'ýný 917 yap
+            miniSprite.sortingOrder = 917;
         }
     }
 
@@ -125,9 +128,11 @@ public class DraggableObject : MonoBehaviour
             zoneObject.SetActive(false);
         }
 
+        // Sürükleme býrakýldýðýnda miniSprite'in layer order'ýný 916 yap
+        miniSprite.sortingOrder = 916;
+
         isDragging = false; // Sürükleme sona erdi
     }
-
 
     private void OnMouseOver()
     {

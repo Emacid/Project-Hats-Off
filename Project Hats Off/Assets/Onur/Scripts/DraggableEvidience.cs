@@ -17,6 +17,7 @@ public class DraggableEvidence : MonoBehaviour
     public float clickVolume = 1f;
     public float impactVolume = 1f;
     private AudioSource audioSource;
+    private SpriteRenderer miniSprite;
 
     private Vector2 originalPos;
 
@@ -39,6 +40,7 @@ public class DraggableEvidence : MonoBehaviour
         minBounds = new Vector2(bottomLeft.x + leftOffset, bottomLeft.y + bottomOffset);
         maxBounds = new Vector2(topRight.x - rightOffset, topRight.y - topOffset);
         originalPos = transform.position;
+        miniSprite = gameObject.GetComponent<SpriteRenderer>();
 
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
@@ -58,7 +60,7 @@ public class DraggableEvidence : MonoBehaviour
     {
         Vector3 screenPos = cam.WorldToViewportPoint(transform.position);
 
-        // Eðer ekranýn dýþýnda `outOfBoundsOffset` mesafesinde ise sýfýr konumuna döner
+        // Eðer ekranýn dýþýnda outOfBoundsOffset mesafesinde ise sýfýr konumuna döner
         if (screenPos.x < -outOfBoundsOffset || screenPos.x > 1 + outOfBoundsOffset ||
             screenPos.y < -outOfBoundsOffset || screenPos.y > 1 + outOfBoundsOffset)
         {
@@ -80,6 +82,9 @@ public class DraggableEvidence : MonoBehaviour
     private void OnMouseDrag()
     {
         if (!isDraggable) return;
+
+        // Minisprite'ýn layerýný 915 yap
+        miniSprite.sortingOrder = 915;
 
         // Rigidbody'nin velocity'sini sýfýrla
         if (rb != null)
@@ -105,9 +110,11 @@ public class DraggableEvidence : MonoBehaviour
         Debug.Log("Sürükleme algýlandý.");
     }
 
-
     private void OnMouseUp()
     {
+        // Minisprite'ýn layerýný 914 yap
+        miniSprite.sortingOrder = 914;
+
         float clickDuration = Time.time - clickStartTime;
         Vector2 finalMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         float distance = Vector2.Distance(initialMousePosition, finalMousePosition);
