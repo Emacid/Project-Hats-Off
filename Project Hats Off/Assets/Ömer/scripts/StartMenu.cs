@@ -43,8 +43,17 @@ public class StartMenu : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame1()
     {
+        PlayerPrefs.SetInt("GameMode", 1); // 1: Kolay mod
+        PlayerPrefs.Save();
+        isZoomed = true;
+    }
+
+    public void StartGame2()
+    {
+        PlayerPrefs.SetInt("GameMode", 2); // 2: Zor mod
+        PlayerPrefs.Save();
         isZoomed = true;
     }
 
@@ -87,7 +96,7 @@ public class StartMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(transitionTime);
         print("next");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);    
+        SceneManager.LoadScene("GameScene");    
     }
 
     public void Move(int buttonIndex)
