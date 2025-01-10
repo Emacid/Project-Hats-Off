@@ -9,14 +9,14 @@ public class RestartScene : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             // Mevcut sahneyi yeniden yükler
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("GameScene");
         }
 
         // R tuþuna basýlýp basýlmadýðýný kontrol eder
         if (Input.GetKeyDown(KeyCode.F8))
         {
             // Mevcut sahneyi yeniden yükler
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene("Credits");
         }
     }
 }

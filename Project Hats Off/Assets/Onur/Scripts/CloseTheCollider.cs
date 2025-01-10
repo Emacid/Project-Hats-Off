@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CloseTheCollider : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class CloseTheCollider : MonoBehaviour
     {
         foreach (BoxCollider2D boxCollider in boxCollider2Ds)
         {
-            boxCollider.enabled = false;
+            StartCoroutine(CloseTheBoxCollider());
+            //boxCollider.enabled = false;
         }
 
 
@@ -40,6 +42,15 @@ public class CloseTheCollider : MonoBehaviour
         foreach (SuspectOutline suspectOutline in suspectOutlines)
         {
             //suspectOutline.canInteract = true;
+        }
+    }
+
+    public IEnumerator CloseTheBoxCollider()
+    {
+        yield return new WaitForSeconds(0.02f);
+        foreach (BoxCollider2D boxCollider in boxCollider2Ds)
+        {
+            boxCollider.enabled = false;
         }
     }
 }

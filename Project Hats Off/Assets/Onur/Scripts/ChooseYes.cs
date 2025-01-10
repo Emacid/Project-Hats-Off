@@ -9,9 +9,10 @@ public class ChooseYes : MonoBehaviour
     public Sprite noHoverSprite;
     public GameObject parentObject;
     public GameObject ballotStamp;
+    private ChooseTheGuilty finishGameObject;
     void Start()
     {
-
+        finishGameObject = GameObject.Find("2").GetComponent<ChooseTheGuilty>();
     }
 
 
@@ -36,10 +37,12 @@ public class ChooseYes : MonoBehaviour
         if(gameObject.name == "TrueYes") 
         {
             print("DOÐRU SUSPECT!");
+            finishGameObject.RightKillerr();
         }
         else 
         {
             print("YANLIS SUSPECT!");
+            finishGameObject.WrongKillerr();
         }
     }
 

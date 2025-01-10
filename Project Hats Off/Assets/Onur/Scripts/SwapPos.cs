@@ -167,7 +167,7 @@ public class SwapPos : MonoBehaviour
     {
         buttonManager.CheckFolderUp();
         //noGravScript.caseFileOpen = true;
-        if (buttonManager.openFolderCount > 2)
+        if (buttonManager.openFolderCount > 1)
         {
             asistant.SpawnAsistantText(18);
         }

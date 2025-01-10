@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Deactivate : MonoBehaviour
 {
+    public float timeOfDisable = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DisableAfterDelay(0.2f));
+        StartCoroutine(DisableAfterDelay(timeOfDisable));
     }
 
     // Update is called once per frame

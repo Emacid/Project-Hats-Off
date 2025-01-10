@@ -37,13 +37,23 @@ public class ChooseTheGuilty : MonoBehaviour
     {
         fadeOutBlack.SetActive(true);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("WrongKillerMidterm");
     }
 
     public IEnumerator RightKiller()
     {
         fadeOutBlack.SetActive(true);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("RightKillerMidterm");
+    }
+
+    public void WrongKillerr() 
+    {
+        StartCoroutine(WrongKiller());
+    }
+
+    public void RightKillerr()
+    {
+        StartCoroutine(RightKiller());
     }
 }

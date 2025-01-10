@@ -81,6 +81,13 @@ public class DraggableEvidence : MonoBehaviour
     {
         if (!isDraggable) return;
 
+        // Rigidbody'nin velocity'sini sýfýrla
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
         Vector2 currentMousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         float distance = Vector2.Distance(initialMousePosition, currentMousePosition);
 
@@ -97,6 +104,7 @@ public class DraggableEvidence : MonoBehaviour
         transform.position = newPos;
         Debug.Log("Sürükleme algýlandý.");
     }
+
 
     private void OnMouseUp()
     {

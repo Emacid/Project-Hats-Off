@@ -16,6 +16,7 @@ TagManager:
   - IDBookZone
   - MiddleScreen
   - StamperCollider
+  - ShadowColliderObject
   layers:
   - Default
   - TransparentFX
@@ -64,4 +65,7 @@ TagManager:
     locked: 0
   - name: BLOCKEVERYTHING
     uniqueID: 4287586467
+    locked: 0
+  - name: OMGGGGG
+    uniqueID: 853445325
     locked: 0
