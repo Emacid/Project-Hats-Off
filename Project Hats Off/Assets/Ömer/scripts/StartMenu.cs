@@ -8,12 +8,15 @@ public class StartMenu : MonoBehaviour
 {
     public RectTransform character;
     public RectTransform background;
+    public RectTransform credits;
 
     public RectTransform buttons;
 
     Vector3 targetIn;
     Vector3 targetOut;
     Vector3 targetScale;
+    Vector3 creditsTargetIn;
+    Vector3 creditsTargetOut;
     public float transitionTime;
     public float moveSpeed;
     public float scaleSpeed;
@@ -21,11 +24,14 @@ public class StartMenu : MonoBehaviour
     public bool isMoving;
     public bool onPressed;
 
+
     private void Start()
     {
         targetScale = new Vector3(12, 12, 1);
         targetIn = new Vector3(810, 200, 0);
-        targetOut = new Vector3(810, 360, 0);  
+        targetOut = new Vector3(810, 360, 0);
+        creditsTargetIn = new Vector3(0, 0, 0);
+        creditsTargetOut = new Vector3(0, 1000, 0);
     }
 
     private void Update()
@@ -53,7 +59,9 @@ public class StartMenu : MonoBehaviour
         background.localScale = Vector3.Lerp(background.localScale, targetScale, Time.deltaTime * scaleSpeed);
     }
 
-    IEnumerator Movement(Vector3 target)
+   
+
+    IEnumerator Movement(RectTransform transform,Vector3 target, float finishTime)
     {
         float lerpTime = 0;
 
@@ -62,19 +70,17 @@ public class StartMenu : MonoBehaviour
             isMoving = true;
             lerpTime += Time.deltaTime * moveSpeed;
 
-            buttons.localPosition = Vector3.Lerp(buttons.localPosition, target, lerpTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, target, lerpTime);
 
-            if (lerpTime >= 1)
+            if (lerpTime >= finishTime)
             {
                 isMoving = false;
                 StopAllCoroutines(); 
-                buttons.localPosition = target;
+                transform.localPosition = target;
                 lerpTime = 0;
             }
             yield return null;
-
         }
-
     }
 
     IEnumerator NextScene()
@@ -84,20 +90,40 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);    
     }
 
-    public void Move()
+    public void Move(int buttonIndex)
     {
         if (isMoving) return;
 
-        if (!onPressed)
+        switch (buttonIndex)
         {
-            StartCoroutine(Movement(targetIn));
-            onPressed = true;
+            case 0:
+                if (!onPressed)
+                {
+                    onPressed = true;
+                    StartCoroutine(Movement(buttons, targetIn, 0.1f));
+                }
+                else if (onPressed)
+                {
+                    onPressed = false;
+                    StartCoroutine(Movement(buttons, targetOut, 0.1f));
+                }
+                break;
+            case 1:
+                if (!onPressed)
+                {
+                    onPressed = true;
+                    StartCoroutine(Movement(credits, creditsTargetIn, 0.3f));
+                }
+                else if (onPressed)
+                {
+                    onPressed = false;
+                    StartCoroutine(Movement(credits, creditsTargetOut, 0.3f));
+                }
+                break;
+
         }
-        else if (onPressed)
-        {
-            StartCoroutine(Movement(targetOut));
-            onPressed = false;
-        }
+        
+        
     }
 
 }
