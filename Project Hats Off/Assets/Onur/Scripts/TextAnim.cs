@@ -12,6 +12,7 @@ public class TextAnim : MonoBehaviour
 
     public GameObject[] texts;
     private AudioSource[] gibberishTalksCharlie;
+    private AudioSource[] gibberishTalksAmy;
     [SerializeField] private int textBoxNumber = 6; // Unity'den ayarlanabilir maksimum sýnýr
     private int currentTriggerIndex = -1; // Hangi trigger'da olduðumuzu tutar
 
@@ -46,6 +47,19 @@ public class TextAnim : MonoBehaviour
         gibberishTalksCharlie[9] = GameObject.Find("Sfx1 (9)").GetComponent<AudioSource>();
         gibberishTalksCharlie[10] = GameObject.Find("Sfx1 (10)").GetComponent<AudioSource>();
         gibberishTalksCharlie[11] = GameObject.Find("Sfx1 (11)").GetComponent<AudioSource>();
+        gibberishTalksAmy = new AudioSource[12];
+        gibberishTalksAmy[0] = GameObject.Find("Sfx2").GetComponent<AudioSource>();
+        gibberishTalksAmy[1] = GameObject.Find("Sfx2 (1)").GetComponent<AudioSource>();
+        gibberishTalksAmy[2] = GameObject.Find("Sfx2 (2)").GetComponent<AudioSource>();
+        gibberishTalksAmy[3] = GameObject.Find("Sfx2 (3)").GetComponent<AudioSource>();
+        gibberishTalksAmy[4] = GameObject.Find("Sfx2 (4)").GetComponent<AudioSource>();
+        gibberishTalksAmy[5] = GameObject.Find("Sfx2 (5)").GetComponent<AudioSource>();
+        gibberishTalksAmy[6] = GameObject.Find("Sfx2 (6)").GetComponent<AudioSource>();
+        gibberishTalksAmy[7] = GameObject.Find("Sfx2 (7)").GetComponent<AudioSource>();
+        gibberishTalksAmy[8] = GameObject.Find("Sfx2 (8)").GetComponent<AudioSource>();
+        gibberishTalksAmy[9] = GameObject.Find("Sfx2 (9)").GetComponent<AudioSource>();
+        gibberishTalksAmy[10] = GameObject.Find("Sfx2 (10)").GetComponent<AudioSource>();
+        gibberishTalksAmy[11] = GameObject.Find("Sfx2 (11)").GetComponent<AudioSource>();
     }
 
     // Butonla çaðrýlacak fonksiyon
@@ -93,7 +107,18 @@ public class TextAnim : MonoBehaviour
             if (parent != null && parent.name == "Right")
             {
                 StartCoroutine(TalkAnim());
-                playRandomSoundCharlie();
+                if(ButtonManager.suspectInMiddle == 1) 
+                {
+                    playRandomSoundCharlie();
+                }
+                else if (ButtonManager.suspectInMiddle == 2)
+                {
+                    playRandomSoundAmy();
+                }
+                else if (ButtonManager.suspectInMiddle == 3)
+                {
+                    playRandomSoundCharlie();
+                }
             }
             texts[triggerNumber].SetActive(true);  // Text'i göster
         }
@@ -136,5 +161,10 @@ public class TextAnim : MonoBehaviour
     private void playRandomSoundCharlie() 
     {
         gibberishTalksCharlie[Random.Range(0,12)].Play();
+    }
+
+    private void playRandomSoundAmy()
+    {
+        gibberishTalksAmy[Random.Range(0, 12)].Play();
     }
 }
