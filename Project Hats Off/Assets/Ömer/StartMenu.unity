@@ -330,7 +330,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 958a54c2e3af90b40bb75f7bc49c92d1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1844,6 +1844,11 @@ MonoBehaviour:
   isZoomed: 0
   isMoving: 0
   onPressed: 0
+  uiElements:
+  - {fileID: 173985925}
+  - {fileID: 1175980792}
+  - {fileID: 1412940498}
+  - {fileID: 1291370783}
 --- !u!4 &2028238412
 Transform:
   m_ObjectHideFlags: 0

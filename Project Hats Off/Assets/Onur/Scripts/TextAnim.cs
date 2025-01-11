@@ -13,6 +13,7 @@ public class TextAnim : MonoBehaviour
     public GameObject[] texts;
     private AudioSource[] gibberishTalksCharlie;
     private AudioSource[] gibberishTalksAmy;
+    private AudioSource[] gibberishTalksDavid;
     [SerializeField] private int textBoxNumber = 6; // Unity'den ayarlanabilir maksimum sýnýr
     private int currentTriggerIndex = -1; // Hangi trigger'da olduðumuzu tutar
 
@@ -60,6 +61,18 @@ public class TextAnim : MonoBehaviour
         gibberishTalksAmy[9] = GameObject.Find("Sfx2 (9)").GetComponent<AudioSource>();
         gibberishTalksAmy[10] = GameObject.Find("Sfx2 (10)").GetComponent<AudioSource>();
         gibberishTalksAmy[11] = GameObject.Find("Sfx2 (11)").GetComponent<AudioSource>();
+        gibberishTalksDavid = new AudioSource[10];
+        gibberishTalksDavid[0] = GameObject.Find("Sfx3").GetComponent<AudioSource>();
+        gibberishTalksDavid[1] = GameObject.Find("Sfx3 (1)").GetComponent<AudioSource>();
+        gibberishTalksDavid[2] = GameObject.Find("Sfx3 (2)").GetComponent<AudioSource>();
+        gibberishTalksDavid[3] = GameObject.Find("Sfx3 (3)").GetComponent<AudioSource>();
+        gibberishTalksDavid[4] = GameObject.Find("Sfx3 (4)").GetComponent<AudioSource>();
+        gibberishTalksDavid[5] = GameObject.Find("Sfx3 (5)").GetComponent<AudioSource>();
+        gibberishTalksDavid[6] = GameObject.Find("Sfx3 (6)").GetComponent<AudioSource>();
+        gibberishTalksDavid[7] = GameObject.Find("Sfx3 (7)").GetComponent<AudioSource>();
+        gibberishTalksDavid[8] = GameObject.Find("Sfx3 (8)").GetComponent<AudioSource>();
+        gibberishTalksDavid[9] = GameObject.Find("Sfx3 (9)").GetComponent<AudioSource>();
+
     }
 
     // Butonla çaðrýlacak fonksiyon
@@ -117,7 +130,7 @@ public class TextAnim : MonoBehaviour
                 }
                 else if (ButtonManager.suspectInMiddle == 3)
                 {
-                    playRandomSoundCharlie();
+                    playRandomSoundDavid();
                 }
             }
             texts[triggerNumber].SetActive(true);  // Text'i göster
@@ -167,4 +180,10 @@ public class TextAnim : MonoBehaviour
     {
         gibberishTalksAmy[Random.Range(0, 12)].Play();
     }
+
+    private void playRandomSoundDavid()
+    {
+        gibberishTalksDavid[Random.Range(0, 10)].Play();
+    }
+
 }
