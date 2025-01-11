@@ -1789,6 +1789,8 @@ public class ButtonManager : MonoBehaviour
 
     private void FillNotepad(int notepadNumber, int hintNumber)
     {
+        if(PlayerPrefs.GetInt("GameMode") == 1) 
+      { 
         // Eðer bu kombinasyon daha önce kullanýldýysa fonksiyonu çalýþtýrma.
         if (usedNotepadHints.Contains((notepadNumber, hintNumber)))
         {
@@ -1801,6 +1803,7 @@ public class ButtonManager : MonoBehaviour
         notepadPages[notepadNumber].HintLoad(hintNumber);
         Instantiate(notepadPopUp);
         Debug.Log($"Notepad {notepadNumber}, Hint {hintNumber} yüklendi.");
+      }
     }
 
     public void CheckFolderUp() 

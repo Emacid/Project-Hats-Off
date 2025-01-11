@@ -6,6 +6,8 @@ public class InfoPanel : MonoBehaviour
 {
     private int currentPage = 1; // Baþlangýç sayfasý (ilk sayfa 1 olarak ayarlanýr)
     private List<GameObject> pages = new List<GameObject>();
+    public GameObject ileri;
+    public GameObject geri;
 
     void Start()
     {
@@ -45,6 +47,23 @@ public class InfoPanel : MonoBehaviour
         for (int i = 0; i < pages.Count; i++)
         {
             pages[i].SetActive(i == currentPage - 1); // Sayfa numarasýný 1'e göre düzenle
+        }
+
+        // Butonlarýn aktiflik durumunu ayarla
+        if (currentPage == 1)
+        {
+            ileri.SetActive(true); // Ýleri açýk
+            geri.SetActive(false); // Geri kapalý
+        }
+        else if (currentPage == pages.Count)
+        {
+            ileri.SetActive(false); // Ýleri kapalý
+            geri.SetActive(true); // Geri açýk
+        }
+        else
+        {
+            ileri.SetActive(true); // Ýleri açýk
+            geri.SetActive(true); // Geri açýk
         }
     }
 }
