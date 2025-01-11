@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
 public class StartMenu : MonoBehaviour
 {
+    public Image image1;
+    public Image image2;
     public RectTransform character;
     public RectTransform background;
     public RectTransform credits;
@@ -23,15 +26,18 @@ public class StartMenu : MonoBehaviour
     public bool isZoomed;
     public bool isMoving;
     public bool onPressed;
-
+    public GameObject[] uiElements;
 
     private void Start()
     {
         targetScale = new Vector3(12, 12, 1);
-        targetIn = new Vector3(810, 200, 0);
+        targetIn = new Vector3(810, 60, 0);
         targetOut = new Vector3(810, 360, 0);
-        creditsTargetIn = new Vector3(0, 0, 0);
-        creditsTargetOut = new Vector3(0, 1000, 0);
+        creditsTargetIn = new Vector3(-300, 0, 0);
+        creditsTargetOut = new Vector3(-300, 1000, 0);
+        image1.gameObject.SetActive(false);
+        image2.gameObject.SetActive(false);
+
     }
 
     private void Update()
@@ -45,6 +51,10 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame1()
     {
+        for (int i = 0; i < uiElements.Length; i++)
+        {
+            uiElements[i].SetActive(false);
+        }
         PlayerPrefs.SetInt("GameMode", 1); // 1: Kolay mod
         PlayerPrefs.Save();
         isZoomed = true;
@@ -52,6 +62,10 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame2()
     {
+        for (int i = 0; i < uiElements.Length; i++)
+        {
+            uiElements[i].SetActive(false);
+        }
         PlayerPrefs.SetInt("GameMode", 2); // 2: Zor mod
         PlayerPrefs.Save();
         isZoomed = true;
@@ -109,12 +123,16 @@ public class StartMenu : MonoBehaviour
                 if (!onPressed)
                 {
                     onPressed = true;
+                    image1.gameObject.SetActive(true);
+                    image2.gameObject.SetActive(true);
                     StartCoroutine(Movement(buttons, targetIn, 0.1f));
                 }
                 else if (onPressed)
                 {
                     onPressed = false;
                     StartCoroutine(Movement(buttons, targetOut, 0.1f));
+                    image1.gameObject.SetActive(false);
+                    image2.gameObject.SetActive(false);
                 }
                 break;
             case 1:
