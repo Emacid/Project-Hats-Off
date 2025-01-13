@@ -378,14 +378,14 @@ public class ButtonManager : MonoBehaviour
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[4]);
-                            FillNotepad(0, 0);
+                            //FillNotepad(0, 0);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover2" && suspectScripts[1].notTalking && suspectInMiddle == 2) 
                         {
                             Debug.Log("Text gelmesi lazým!");
                             InstantiateTexts(texts[15]);
-                            FillNotepad(1, 0);
+                            //FillNotepad(1, 0);
                             obj.gameObject.SetActive(false);
                         }
                         else if (obj.name == "evidence_hover2" && suspectScripts[2].notTalking && suspectInMiddle == 3)
